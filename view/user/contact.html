@@ -1,0 +1,93 @@
+<html>
+<head>
+	<title>Contact-Us</title>
+<link rel="stylesheet" href="/AssetsController/readCss?file=example.css">
+</head>
+<br/>
+<body>
+	<body>
+		<div class="demo">
+		<header>
+			<table id="t">
+				<tr>
+					<th width="24.4%"><span class="align-middle"><h1 style="float:left;padding-left:20px;">Java</h1></span></th>
+			<th width="33.3%" style="padding-top:1px"><span class="align-middle"><h1 style="float:middle">Contact-Us</h1></span></th>
+					<th width="24.4%">
+					<div class="dropdown" style="float:right;">
+						<a href=#popup1>
+							<button class="dropbtn" >&nbsp;&nbsp;<img src=/AssetsController/image?file=user.png style=float:left;>Guest</button></a>
+						<div id="popup1" class="overlay">
+							<div class="popup">
+							<a class="close" href="#">&times;</a>
+							<div class="content">
+								<form name="frmSite" action = "/UsersController/updateProfile?file=profile" method = "get">
+									<pre style="color:black"> Name     : <input type = "text" name = "username" value = "id1" placeholder = "Username"/></pre>
+									<pre style="color:black"> Email    : <input type = "email" name = "email" value = "id2"  placeholder = "Email"/></pre>
+									<pre style="color:black">Address   : <input type = "text" name = "address" value = "3dx"  placeholder = "Address"/></pre>
+									<input type = "submit" value = "Submit">
+								</form>
+							</div>
+						</div>
+					</div>
+						<div class="dropdown-content" style = "padding:14px 0px;">
+							<a href="/ProgramsController/index?file=index">&nbsp;&nbsp;<img src="/AssetsController/image?file=homepage.png" style="float:left;">Home Page</a>
+							<a href="/UsersController/login?file=login">&nbsp;&nbsp;<img src="/AssetsController/image?file=login.png" style="float:left;">LogIn</a>
+							<a href="/UsersController/signUp?file=signup">&nbsp;&nbsp;<img src="/AssetsController/image?file=signup.png" style="float:left;">SignUp</a>
+							<a href="javascript: history.go(-1)">&nbsp;&nbsp;<img src="/AssetsController/image?file=back.png" style="float:left;">Back</a>
+						</div>
+					</div>
+					</th>
+				</tr>
+			</table>
+			</div>
+		</header>
+	</div>
+	<br/>
+	<br/>	
+<div style = "width:40%; height:60%; margin:auto;">
+	<p id="errfn">   </p>
+<center>
+<form  action = "contactAdmin" method = "get" align="middle" name="myform" onsubmit="return validate()">
+	<pre> Name             :    <input type = "text" name = "name" placeholder = "Name" /></pre>
+	<pre> Email            :    <input type = "email" name = "email" pattern = "[a-zA-Z][a-zA-Z0-9.]+[@][a-zA-Z]+[[.][a-zA-Z]{2,3}]+" placeholder = "Email"/></pre>
+	<pre>Subject           :    <input type = "text" name = "sub" placeholder = "Subject"/></pre>
+	<pre>Message           :    <input type = "text" name = "msg" placeholder = "Message"/></pre>
+	<input type ="submit" align:"center"  id="button" name = CONTACTUS>
+</form>
+</center>
+</div>
+<script type="text/javascript">
+ function validate() {
+  if(myform.name.value.length==0)
+  {
+		document.getElementById('errfn').innerHTML="Please enter valid username";
+		return false;
+  }
+  if(myform.email.value.length==0)
+  {
+		document.getElementById('errfn').innerHTML="Please enter email id";
+		return false;
+  }
+  if(myform.sub.value.length==0)
+  {
+		document.getElementById('errfn').innerHTML="Please enter subject";
+		return false;
+  }
+  if(myform.msg.value.length==0)
+  {
+		document.getElementById('errfn').innerHTML="Please enter message";
+		return false;
+  }
+ }
+ </script>
+<div class="memo">
+	<footer>
+			<div style ="float:left;padding-top:30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COPYRIGHT@JYOTI VAKARE</div>
+			<div style = "padding-top:25px;float:right;">
+			<a href="https://www.facebook.com/jyoti.vakare" style="padding-right:40px;float:right;" target="_blank"><img src="/AssetsController/image?file=fb_icon_325x325.png" alt="facebook" width="40" height ="40"  hspace="8"></a>
+			<a href="https://www.instagram.com/jyotivakare/" style="float:right" target="_blank"><img src="/AssetsController/image?file=youtube.png" alt="youtube" width="40" height ="40"></a>
+			</div>
+	</footer>
+</div>
+</body>
+</html>

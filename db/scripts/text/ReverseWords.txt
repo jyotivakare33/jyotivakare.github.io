@@ -1,0 +1,16 @@
+<b>REVERSE WORDS</b>
+
+<b>Challenge Description:</b>
+    Write a program which reverses the words in an input sentence.
+
+<b>Input sample:</b>
+	The first argument is a file that contains multiple sentences, one per line. Empty lines are also possible. 
+    For example:
+    Hello World
+    Hello CodeEval
+
+<b>Output sample:</b>
+	Print to stdout each sentence with the reversed words in it, one per line. Empty lines in the input should be ignored. Ensure that there are no trailing empty spaces in each line you print. 
+    For example: 
+    World Hello
+    CodeEval Hello

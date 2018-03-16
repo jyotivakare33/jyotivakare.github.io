@@ -1,0 +1,22 @@
+<b>READ MORE</b>
+
+<b>CHALLENGE DESCRIPTION:</b>
+	You are given a text. Write a program which outputs its lines according to the following rules:
+    If line length is <= 55 characters, print it without any changes.
+    If the line length is > 55 characters, change it as follows:
+    Trim the line to 40 characters.
+    If there are spaces " " in the resulting string, trim it once again to the last space (the space should be trimmed too).
+    Add a string "... <Read More>" to the end of the resulting string and print it.
+
+<b>INPUT SAMPLE:</b>
+    The first argument is a file. The file contains a text.
+
+For example:
+    1  Tom exhibited.
+    2  Amy Lawrence was proud and glad, and she tried to make Tom see it in her face - but he wouldnt look.
+    3  Tom was tugging at a button-hole and looking sheepish.
+    4  Two thousand verses is a great many - very, very great many.
+    5  Tom mouth watered for the apple, but he stuck to his work.
+
+<b>OUTPUT SAMPLE:</b>
+    Print to stdout the text lines with their length limited according to the rules described above.

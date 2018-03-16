@@ -1,0 +1,53 @@
+body{        
+	padding-top: 170px;
+	padding-bottom: 60px;
+	background-color:antiquewhite;
+}
+
+.demo, .memo{
+	width: 100%;
+	position: fixed;        
+	background-color: pink;
+	color:#000000;
+}
+.demo{
+	top: 0;
+	left: 0;
+	height:70px;
+}
+.memo{
+	bottom: 0;
+	left:0;
+	height:90px;
+}
+#t {
+	width: 100%;
+	text-align: center;
+}
+th, td {
+	text-align:center;
+}
+.dropbtn {
+	background-color: blue;
+	color: white;
+	padding: 10px;
+	font-size: 16px;
+	border: none;
+}
+.dropdown {
+	display: inline-block;
+}
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+.dropdown-content a:hover {background-color:black;}
+.dropdown:hover .dropdown-content {display: block;}

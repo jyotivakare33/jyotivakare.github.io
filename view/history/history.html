@@ -1,0 +1,79 @@
+<html>
+<head>
+	<title>Login History</title>
+	<link rel="stylesheet" href="/AssetsController/readCss?file=example.css">
+</head>
+<body>
+	<body>
+		<div class="demo">
+		<header>
+			<table id="t" width="100%">
+				<tr><th width="24.4%"><span class="align-middle"><h1 style="float:left">Java</h1></span></th>
+					<th width="33.3%" style="padding-top:25px"><span class="align-middle"><h1 style="float:middle">LoginHistory</h1></span></th>
+					<th width="24.4%">
+					<div class="dropdown" style="float:right;">
+						<a href=#popup1>
+							<button class="dropbtn" >&nbsp;&nbsp;<img src=/AssetsController/image?file=user.png style=float:left;>Guest</button></a>
+						<div id="popup1" class="overlay">
+							<div class="popup">
+							<a class="close" href="#">&times;</a>
+							<div class="content">
+								<form name="frmSite" action = "/UsersController/updateProfile?file=profile" method = "get">
+									<pre style="color:black"> Name     : <input type = "text" name = "username" value = "id1" placeholder = "username"/></pre>
+									<pre style="color:black"> Email    : <input type = "email" name = "email" value = "id2"  placeholder = "email"/></pre>
+									<pre style="color:black">Address   : <input type = "text" name = "address" value = "3dx"  placeholder = "address"/></pre>
+									<input type = "submit" value = "Submit" id="button">
+								</form>
+							</div>
+						</div>
+					</div>
+						<div class="dropdown-content" style = "padding:14px 0px;">
+							<a href="/UsersController/contactUs?file=contact">&nbsp;&nbsp;<img src="/AssetsController/image?file=contact.png" style="float:left;">Contact Us</a>
+							<a href="/ProgramsController/index?file=index">&nbsp;&nbsp;<img src="/AssetsController/image?file=homepage.png" style="float:left;">Home Page</a>
+							<a href="javascript: history.go(-1)">&nbsp;&nbsp;<img src="/AssetsController/image?file=back.png" style="float:left;">Back</a>
+							<a href="/UsersController/logout?file=logout">&nbsp;&nbsp;<img src="/AssetsController/image?file=logout.png" style="float:left;">Logout</a>
+						</div>
+					</div>
+					</th>
+				</tr>
+			</table>
+			</div>
+		</header>
+		</div>
+		<br/>
+		<div class="box">
+			<a id="button" href="#popup2">GENERATE PDF</a>
+		</div>
+		<div id="popup2" class="overlay">
+			<div class="popup">
+				<h2>Generate Pdf</h2><a class="close" href="#">&times;</a><div class="content">
+				<input type="radio" name="site" onchange="if(this.checked){goTo('/MailersController/generatePdf?file=history.html')}"/>DOWNLOAD PDF</br>
+				<input type="radio" name="site" onchange="if(this.checked){goTo('/MailersController/send?file=Login.pdf')}"/>SEND MAIL</br>
+		</div>
+	</div>
+</div>  
+		<table id="myTable">
+        <h1>remaining content</h1>
+        <br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+ 	
+<div class="memo">
+	<footer>
+			<div style ="float:left;padding-top:30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COPYRIGHT@JYOTI VAKARE</div>
+			<div style = "padding-top:25px;float:right;">
+			<a href="https://www.facebook.com/jyoti.vakare" style="padding-right:40px;float:right;" target="_blank"><img src="/AssetsController/image?file=fb_icon_325x325.png" alt="facebook" width="40" height ="40"  hspace="8"></a>
+			<a href="https://www.instagram.com/jyotivakare/" style="float:right" target="_blank"><img src="/AssetsController/image?file=youtube.png" alt="youtube" width="40" height ="40"></a>
+			</div>
+	</footer>
+</div>
+<script>
+	function goTo(site) {
+		window.location.href = site;
+	}
+</script>
+</body>
+</html>

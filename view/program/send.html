@@ -1,0 +1,88 @@
+<html>
+<head>
+	<title>Send Mail</title>
+<link rel="stylesheet" href="/AssetsController/readCss?file=example.css">
+</head>
+<body>
+<div class="demo">
+	<header>
+	<table id="t">
+		<tr>
+			<th width="24.4%"><span class="align-middle"><h1 style="float:left;padding-left:20px;">Java</h1></span></th>
+			<th width="33.3%" style="padding-top:25px"><span class="align-middle"><h1 style="float:middle">Send Mail</h1></span></th>
+			<th width="24.4%">
+			<div class="dropdown" style="float:right;">
+						<a href=#popup1>
+							<button class="dropbtn" >&nbsp;&nbsp;<img src=/AssetsController/image?file=user.png style=float:left;>Guest</button></a>
+						<div id="popup1" class="overlay">
+							<div class="popup">
+							<a class="close" href="#">&times;</a>
+							<div class="content">
+								<form name="frmSite" action = "/UsersController/updateProfile?file=profile" method = "get">
+									<pre style="color:black"> Name     : <input type = "text" name = "username" value = "id1" placeholder = "username"/></pre>
+									<pre style="color:black"> Email    : <input type = "email" name = "email" value = "id2"  placeholder = "email"/></pre>
+									<pre style="color:black">Address   : <input type = "text" name = "address" value = "3dx"  placeholder = "address"/></pre>
+									<input type = "submit" value = "Submit">
+								</form>
+							</div>
+						</div>
+					</div>
+						<div class="dropdown-content" style = "padding:14px 0px;">
+						<a href="/ProgramsController/index?file=index">&nbsp;&nbsp;<img src="/AssetsController/image?file=homepage.png" style="float:left;">Home Page</a>
+						<a href="/UsersController/contactUs?file=contact">&nbsp;&nbsp;<img src="/AssetsController/image?file=contact.png" style="float:left;">Contact Us</a>
+						<a href="javascript: history.go(-1)">&nbsp;&nbsp;<img src="/AssetsController/image?file=back.png" style="float:left;">Back</a>
+						<a href="/UsersController/logout?file=logout">&nbsp;&nbsp;<img src="/AssetsController/image?file=logout.png" style="float:left;">Logout</a>
+						
+					</div>
+				</div>
+			</th>
+		</tr>
+	</table>
+</header>
+</div>
+<br/>
+<br/>	
+<center>
+	<form action = "send" method = "get" name="myform" onsubmit="return validate()">
+		<pre>To             :   <input type = "email" name = "email" pattern = "[a-zA-Z][a-zA-Z0-9.]+[@][a-zA-Z]+[[.][a-zA-Z]{2,3}]+" placeholder = "email"/></pre><div id="errfn">   </div>
+		<pre>Bcc            :   <input type = "email"  name = "emails" placeholder = "Bcc"/></pre><div id="errfn1">   </div>
+		<pre>Cc             :   <input type = "email"  name = "cc" placeholder = "Cc"/></pre><div id="errfn2">   </div>
+		<pre>File Name      :   <input type = "text" name = "file" value = "your value"/></pre><br/>
+		<input type = "submit" value = "SEND" id="button"/>
+	</form>
+</center>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+<script type="text/javascript">
+ function validate() {
+  if(myform.email.value.length==0)
+  {
+		document.getElementById('errfn').innerHTML="Please enter email";
+		return false;
+  }
+  else if(myform.emails.value.length==0)
+  {
+		document.getElementById('errfn1').innerHTML="Please enter email id";
+		return false;
+  }
+  else(myform.cc.value.length==0)
+  {
+		document.getElementById('errfn2').innerHTML="Please enter email id ";
+		return false;
+  }
+ }
+ </script>        	
+<div class="memo">
+	<footer>
+			<div style ="float:left;padding-top:30px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;COPYRIGHT@JYOTI VAKARE</div>
+			<div style = "padding-top:25px;float:right;">
+			<a href="https://www.facebook.com/jyoti.vakare" style="padding-right:40px;float:right;" target="_blank"><img src="/AssetsController/image?file=fb_icon_325x325.png" alt="facebook" width="40" height ="40"  hspace="8"></a>
+			<a href="https://www.instagram.com/jyotivakare/" style="float:right" target="_blank"><img src="/AssetsController/image?file=youtube.png" alt="youtube" width="40" height ="40"></a>
+			</div>
+	</footer>
+</div>
+</body>
+</html>
+
