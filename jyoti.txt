@@ -1,0 +1,1240 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.11
+-- Dumped by pg_dump version 9.5.11
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: login_histories; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE login_histories (
+    username text,
+    "time" text,
+    date text,
+    ip_address text
+);
+
+
+ALTER TABLE login_histories OWNER TO postgres;
+
+--
+-- Name: program_histories; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE program_histories (
+    slno integer NOT NULL,
+    username text,
+    program_name text,
+    input text,
+    output text,
+    date text,
+    "time" text,
+    ip_address text
+);
+
+
+ALTER TABLE program_histories OWNER TO postgres;
+
+--
+-- Name: program_histories_slno_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE program_histories_slno_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE program_histories_slno_seq OWNER TO postgres;
+
+--
+-- Name: program_histories_slno_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE program_histories_slno_seq OWNED BY program_histories.slno;
+
+
+--
+-- Name: programhistory; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE programhistory (
+    id integer NOT NULL,
+    userid text,
+    "time" text,
+    date text,
+    ip text,
+    input text,
+    output text
+);
+
+
+ALTER TABLE programhistory OWNER TO postgres;
+
+--
+-- Name: programhistory_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE programhistory_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE programhistory_id_seq OWNER TO postgres;
+
+--
+-- Name: programhistory_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE programhistory_id_seq OWNED BY programhistory.id;
+
+
+--
+-- Name: programs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE programs (
+    sl_no integer NOT NULL,
+    program_name text,
+    action text,
+    authorid integer
+);
+
+
+ALTER TABLE programs OWNER TO postgres;
+
+--
+-- Name: programs_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE programs_seq
+    START WITH 31
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE programs_seq OWNER TO postgres;
+
+--
+-- Name: programs_sl_no_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE programs_sl_no_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE programs_sl_no_seq OWNER TO postgres;
+
+--
+-- Name: programs_sl_no_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE programs_sl_no_seq OWNED BY programs.sl_no;
+
+
+--
+-- Name: programs_slno_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE programs_slno_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE programs_slno_seq OWNER TO postgres;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE users (
+    username text,
+    email text,
+    password text,
+    address text,
+    id integer NOT NULL
+);
+
+
+ALTER TABLE users OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: slno; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY program_histories ALTER COLUMN slno SET DEFAULT nextval('program_histories_slno_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY programhistory ALTER COLUMN id SET DEFAULT nextval('programhistory_id_seq'::regclass);
+
+
+--
+-- Name: sl_no; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY programs ALTER COLUMN sl_no SET DEFAULT nextval('programs_sl_no_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Data for Name: login_histories; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY login_histories (username, "time", date, ip_address) FROM stdin;
+jyoti	11:11:56	10/03/2018	127.0.0.1
+vijay	11:24:50	10/03/2018	127.0.0.1
+vijay	11:25:53	10/03/2018	127.0.0.1
+vijay	11:26:46	10/03/2018	127.0.0.1
+vijay	11:31:35	10/03/2018	127.0.0.1
+vijay	11:36:42	10/03/2018	127.0.0.1
+vijay	11:40:11	10/03/2018	127.0.0.1
+vijay	12:11:56	10/03/2018	127.0.0.1
+vijay	07:12:52	10/03/2018	127.0.0.1
+vijay	07:21:23	10/03/2018	127.0.0.1
+jyoti	07:24:42	10/03/2018	127.0.0.1
+jyoti	07:28:59	10/03/2018	127.0.0.1
+jyoti	07:32:11	10/03/2018	127.0.0.1
+vijay	07:37:50	10/03/2018	127.0.0.1
+jyoti	07:43:12	10/03/2018	127.0.0.1
+jyoti	07:50:25	10/03/2018	127.0.0.1
+jyoti	09:24:03	10/03/2018	127.0.0.1
+jyoti	09:33:07	10/03/2018	127.0.0.1
+jyoti	09:35:00	10/03/2018	127.0.0.1
+jyoti	09:35:58	10/03/2018	127.0.0.1
+jyoti	09:39:15	10/03/2018	127.0.0.1
+jyoti	09:41:40	10/03/2018	127.0.0.1
+jyoti	09:52:40	10/03/2018	127.0.0.1
+jyoti	09:59:15	10/03/2018	127.0.0.1
+jyoti	10:01:13	10/03/2018	127.0.0.1
+jyoti	10:03:19	10/03/2018	127.0.0.1
+jyoti	10:04:47	10/03/2018	127.0.0.1
+jyoti	10:06:32	10/03/2018	127.0.0.1
+jyoti	10:23:36	10/03/2018	127.0.0.1
+jyoti	10:26:32	10/03/2018	127.0.0.1
+jyoti	10:27:34	10/03/2018	127.0.0.1
+jyoti	10:31:09	10/03/2018	127.0.0.1
+jyoti	10:38:18	10/03/2018	127.0.0.1
+jyoti	10:39:43	10/03/2018	127.0.0.1
+jyoti	10:44:57	10/03/2018	127.0.0.1
+jyoti	10:46:51	10/03/2018	127.0.0.1
+jyoti	10:49:12	10/03/2018	127.0.0.1
+jyoti	10:51:32	10/03/2018	127.0.0.1
+jyoti	10:51:36	10/03/2018	127.0.0.1
+jyoti	10:57:00	10/03/2018	127.0.0.1
+jyoti	10:58:15	10/03/2018	127.0.0.1
+jyoti	11:38:19	10/03/2018	127.0.0.1
+jyoti	11:39:34	10/03/2018	127.0.0.1
+jyoti	11:42:33	10/03/2018	127.0.0.1
+jyoti	11:44:42	10/03/2018	127.0.0.1
+jyoti	11:46:22	10/03/2018	127.0.0.1
+jyoti	11:47:55	10/03/2018	127.0.0.1
+jyoti	12:03:28	10/03/2018	127.0.0.1
+jyoti	12:03:50	10/03/2018	127.0.0.1
+jyoti	12:04:37	10/03/2018	127.0.0.1
+jyoti	12:05:44	10/03/2018	127.0.0.1
+jyoti	12:07:29	10/03/2018	127.0.0.1
+jyoti	12:09:11	10/03/2018	127.0.0.1
+jyoti	12:14:31	10/03/2018	127.0.0.1
+jyoti	12:15:08	10/03/2018	127.0.0.1
+jyoti	12:16:23	10/03/2018	127.0.0.1
+jyoti	12:17:06	10/03/2018	127.0.0.1
+jyoti	04:13:20	13/03/2018	127.0.0.1
+jyoti	04:26:23	13/03/2018	127.0.0.1
+jyoti	04:58:56	13/03/2018	127.0.0.1
+jyoti	04:59:22	13/03/2018	127.0.0.1
+jyoti	05:02:49	13/03/2018	127.0.0.1
+jyoti	05:03:19	13/03/2018	127.0.0.1
+jyoti	05:03:39	13/03/2018	127.0.0.1
+jyoti	05:05:40	13/03/2018	127.0.0.1
+jyoti	05:06:01	13/03/2018	127.0.0.1
+jyoti	05:31:51	13/03/2018	127.0.0.1
+jyoti	05:32:04	13/03/2018	127.0.0.1
+jyoti	05:33:23	13/03/2018	127.0.0.1
+jyoti	05:33:35	13/03/2018	127.0.0.1
+jyoti	05:35:56	13/03/2018	127.0.0.1
+jyoti	05:36:10	13/03/2018	127.0.0.1
+jyoti	05:40:48	13/03/2018	127.0.0.1
+jyoti	05:41:50	13/03/2018	127.0.0.1
+jyoti	05:48:01	13/03/2018	127.0.0.1
+jyoti	05:48:35	13/03/2018	127.0.0.1
+jyoti	05:51:02	13/03/2018	127.0.0.1
+jyoti	05:56:43	13/03/2018	127.0.0.1
+jyoti	06:24:54	13/03/2018	127.0.0.1
+jyoti	06:27:33	13/03/2018	127.0.0.1
+jyoti	06:30:16	13/03/2018	127.0.0.1
+jyoti	06:35:42	13/03/2018	127.0.0.1
+jyoti	06:42:31	13/03/2018	127.0.0.1
+jyoti	06:43:28	13/03/2018	127.0.0.1
+jyoti	06:45:59	13/03/2018	127.0.0.1
+jyoti	06:49:39	13/03/2018	127.0.0.1
+jyoti	06:52:52	13/03/2018	127.0.0.1
+jyoti	06:55:10	13/03/2018	127.0.0.1
+jyoti	07:03:24	13/03/2018	127.0.0.1
+jyoti	07:05:57	13/03/2018	127.0.0.1
+jyoti	07:16:18	13/03/2018	127.0.0.1
+jyoti	07:17:03	13/03/2018	127.0.0.1
+jyoti	07:22:26	13/03/2018	127.0.0.1
+jyoti	07:25:45	13/03/2018	127.0.0.1
+jyoti	07:26:44	13/03/2018	127.0.0.1
+jyoti	07:28:15	13/03/2018	127.0.0.1
+jyoti	07:31:07	13/03/2018	127.0.0.1
+jyoti	07:35:58	13/03/2018	127.0.0.1
+jyoti	09:05:02	13/03/2018	127.0.0.1
+jyoti	09:07:14	13/03/2018	127.0.0.1
+jyoti	09:07:31	13/03/2018	127.0.0.1
+jyoti	09:08:59	13/03/2018	127.0.0.1
+jyoti	09:17:19	13/03/2018	127.0.0.1
+jyoti	09:19:08	13/03/2018	127.0.0.1
+jyoti	09:21:23	13/03/2018	127.0.0.1
+jyoti	09:24:18	13/03/2018	127.0.0.1
+jyoti	09:27:18	13/03/2018	127.0.0.1
+jyoti	10:20:55	13/03/2018	127.0.0.1
+jyoti	10:24:07	13/03/2018	127.0.0.1
+jyoti	10:27:38	13/03/2018	127.0.0.1
+jyoti	10:34:37	13/03/2018	127.0.0.1
+jyoti	11:00:29	13/03/2018	127.0.0.1
+jyoti	11:03:20	13/03/2018	127.0.0.1
+jyoti	11:03:59	13/03/2018	127.0.0.1
+jyoti	11:05:56	13/03/2018	127.0.0.1
+jyoti	11:07:18	13/03/2018	127.0.0.1
+jyoti	11:15:44	13/03/2018	127.0.0.1
+jyoti	11:16:29	13/03/2018	127.0.0.1
+jyoti	11:17:34	13/03/2018	127.0.0.1
+bhagwan	12:00:23	13/03/2018	127.0.0.1
+jyoti	12:32:00	13/03/2018	127.0.0.1
+jyoti	12:33:39	13/03/2018	127.0.0.1
+jyoti	12:35:00	13/03/2018	127.0.0.1
+jyoti	12:35:47	13/03/2018	127.0.0.1
+jyoti	12:36:21	13/03/2018	127.0.0.1
+jyoti	12:37:03	13/03/2018	127.0.0.1
+jyoti	12:39:50	13/03/2018	127.0.0.1
+jyoti	12:41:07	13/03/2018	127.0.0.1
+jyoti	12:41:53	13/03/2018	127.0.0.1
+jyoti	12:43:40	13/03/2018	127.0.0.1
+jyoti	12:47:24	13/03/2018	127.0.0.1
+jyoti	12:48:00	13/03/2018	127.0.0.1
+jyoti	12:48:25	13/03/2018	127.0.0.1
+jyoti	12:50:33	13/03/2018	127.0.0.1
+jyoti	12:51:46	13/03/2018	127.0.0.1
+jyoti	12:55:12	13/03/2018	127.0.0.1
+jyoti	12:57:00	13/03/2018	127.0.0.1
+jyoti	13:00:39	13/03/2018	127.0.0.1
+jyoti	13:02:37	13/03/2018	127.0.0.1
+jyoti	13:04:58	13/03/2018	127.0.0.1
+jyoti	13:08:29	13/03/2018	127.0.0.1
+jyoti	13:10:38	13/03/2018	127.0.0.1
+jyoti	13:34:02	13/03/2018	127.0.0.1
+jyoti	13:43:52	13/03/2018	127.0.0.1
+jyoti	13:44:28	13/03/2018	127.0.0.1
+jyoti	13:44:45	13/03/2018	127.0.0.1
+jyoti	13:45:03	13/03/2018	127.0.0.1
+jyoti	13:45:25	13/03/2018	127.0.0.1
+jyoti	13:48:06	13/03/2018	127.0.0.1
+jyoti	13:52:46	13/03/2018	127.0.0.1
+jyoti123	13:58:09	13/03/2018	127.0.0.1
+jyoti123	14:14:15	13/03/2018	127.0.0.1
+jyoti123	14:16:12	13/03/2018	127.0.0.1
+jyoti1234	14:16:55	13/03/2018	127.0.0.1
+jyoti1232	14:19:02	13/03/2018	127.0.0.1
+jyoti123	14:25:33	13/03/2018	127.0.0.1
+jyoti123	14:27:56	13/03/2018	127.0.0.1
+jyoti123	14:29:27	13/03/2018	127.0.0.1
+jyoti123	14:31:48	13/03/2018	127.0.0.1
+jyoti123	14:51:39	13/03/2018	127.0.0.1
+jyoti123	23:26:38	13/03/2018	127.0.0.1
+jyoti123	23:31:24	13/03/2018	127.0.0.1
+jyoti123	23:40:06	13/03/2018	127.0.0.1
+jyoti123	23:42:25	13/03/2018	127.0.0.1
+jyoti123	23:42:49	13/03/2018	127.0.0.1
+jyoti123	23:43:16	13/03/2018	127.0.0.1
+bhagwan	23:47:52	13/03/2018	127.0.0.1
+bhagwan	23:48:22	13/03/2018	127.0.0.1
+indu	23:48:55	13/03/2018	127.0.0.1
+jyoti123	23:57:38	13/03/2018	127.0.0.1
+jyoti123	23:57:46	13/03/2018	127.0.0.1
+indu	23:57:55	13/03/2018	127.0.0.1
+indu	00:00:52	14/03/2018	127.0.0.1
+indu	00:04:33	14/03/2018	127.0.0.1
+indu	00:05:50	14/03/2018	127.0.0.1
+indu	00:07:11	14/03/2018	127.0.0.1
+indu	00:08:36	14/03/2018	127.0.0.1
+indu	00:12:38	14/03/2018	127.0.0.1
+indu	00:12:51	14/03/2018	127.0.0.1
+indu	00:15:20	14/03/2018	127.0.0.1
+indu	00:17:05	14/03/2018	127.0.0.1
+indu	00:18:46	14/03/2018	127.0.0.1
+indu	00:33:24	14/03/2018	127.0.0.1
+jyoti123	03:56:18	14/03/2018	127.0.0.1
+indu	03:56:29	14/03/2018	127.0.0.1
+jyoti123	03:57:30	14/03/2018	127.0.0.1
+indu	03:57:37	14/03/2018	127.0.0.1
+shankar	04:01:08	14/03/2018	127.0.0.1
+indu	04:01:58	14/03/2018	127.0.0.1
+indu	04:02:06	14/03/2018	127.0.0.1
+indu	04:02:13	14/03/2018	127.0.0.1
+shankar	04:02:49	14/03/2018	127.0.0.1
+jyoti123	04:03:02	14/03/2018	127.0.0.1
+indu	04:03:10	14/03/2018	127.0.0.1
+shankar	04:04:36	14/03/2018	127.0.0.1
+shankar	04:04:56	14/03/2018	127.0.0.1
+shankar	04:05:40	14/03/2018	127.0.0.1
+shankar	04:08:23	14/03/2018	127.0.0.1
+shankar	04:18:30	14/03/2018	127.0.0.1
+shankar	04:19:42	14/03/2018	127.0.0.1
+indu	04:21:53	14/03/2018	127.0.0.1
+shankar	04:22:02	14/03/2018	127.0.0.1
+indu	04:22:45	14/03/2018	127.0.0.1
+indu	04:24:55	14/03/2018	127.0.0.1
+indu	04:25:55	14/03/2018	127.0.0.1
+indu	04:27:58	14/03/2018	127.0.0.1
+indu	04:28:45	14/03/2018	127.0.0.1
+jyoti123	04:36:15	14/03/2018	127.0.0.1
+jyoti123	04:37:44	14/03/2018	127.0.0.1
+jyoti123	04:40:08	14/03/2018	127.0.0.1
+jyoti123	04:43:15	14/03/2018	127.0.0.1
+jyoti123	04:46:21	14/03/2018	127.0.0.1
+jyoti123	04:49:13	14/03/2018	127.0.0.1
+jyoti123	04:51:44	14/03/2018	127.0.0.1
+jyoti123	04:54:44	14/03/2018	127.0.0.1
+jyoti123	04:59:06	14/03/2018	127.0.0.1
+jyoti123	05:04:42	14/03/2018	127.0.0.1
+jyoti123	05:06:20	14/03/2018	127.0.0.1
+jyoti123	05:08:14	14/03/2018	127.0.0.1
+jyoti123	05:51:52	14/03/2018	127.0.0.1
+jyoti123	05:53:40	14/03/2018	127.0.0.1
+jyoti123	05:56:33	14/03/2018	127.0.0.1
+jyoti123	06:00:17	14/03/2018	127.0.0.1
+jyoti123	06:03:15	14/03/2018	127.0.0.1
+jyoti123	06:06:43	14/03/2018	127.0.0.1
+jyoti123	06:07:18	14/03/2018	127.0.0.1
+jyoti123	06:11:21	14/03/2018	127.0.0.1
+jyoti123	06:12:40	14/03/2018	127.0.0.1
+jyoti123	06:15:04	14/03/2018	127.0.0.1
+jyoti123	06:15:52	14/03/2018	127.0.0.1
+jyoti123	06:17:11	14/03/2018	127.0.0.1
+jyoti123	06:18:30	14/03/2018	127.0.0.1
+jyoti123	06:19:32	14/03/2018	127.0.0.1
+jyoti123	06:21:07	14/03/2018	127.0.0.1
+jyoti123	06:22:03	14/03/2018	127.0.0.1
+jyoti123	06:23:07	14/03/2018	127.0.0.1
+jyoti123	06:24:12	14/03/2018	127.0.0.1
+jyoti123	06:25:58	14/03/2018	127.0.0.1
+jyoti123	06:27:29	14/03/2018	127.0.0.1
+jyoti123	06:30:00	14/03/2018	127.0.0.1
+jyoti123	06:31:15	14/03/2018	127.0.0.1
+jyoti123	06:40:37	14/03/2018	127.0.0.1
+jyoti123	06:41:49	14/03/2018	127.0.0.1
+subbu	12:10:43	14/03/2018	127.0.0.1
+sdadsas	12:41:04	14/03/2018	127.0.0.1
+jyoti123	12:57:35	14/03/2018	127.0.0.1
+jyoti123	13:41:24	14/03/2018	127.0.0.1
+indu	13:48:00	14/03/2018	127.0.0.1
+indu	13:58:39	14/03/2018	127.0.0.1
+indu	14:00:30	14/03/2018	127.0.0.1
+indu	14:14:38	14/03/2018	127.0.0.1
+indu	14:37:39	14/03/2018	127.0.0.1
+jyoti123	14:49:51	14/03/2018	127.0.0.1
+bhag@gmail.com	15:01:43	14/03/2018	127.0.0.1
+jyoti123	04:06:30	15/03/2018	127.0.0.1
+jyoti123	04:49:05	15/03/2018	127.0.0.1
+jyoti123	04:52:22	15/03/2018	127.0.0.1
+jyoti123	04:55:09	15/03/2018	127.0.0.1
+jyoti123	04:55:09	15/03/2018	127.0.0.1
+jyoti123	04:55:10	15/03/2018	127.0.0.1
+jyoti123	04:55:10	15/03/2018	127.0.0.1
+jyoti123	04:55:11	15/03/2018	127.0.0.1
+jyoti123	04:57:52	15/03/2018	127.0.0.1
+jyoti123	05:05:21	15/03/2018	127.0.0.1
+jyoti123	05:23:20	15/03/2018	127.0.0.1
+jyoti123	05:31:59	15/03/2018	127.0.0.1
+jyoti123	05:35:57	15/03/2018	127.0.0.1
+jyoti123	05:37:05	15/03/2018	127.0.0.1
+jyoti123	06:27:20	15/03/2018	127.0.0.1
+jyoti123	06:48:37	15/03/2018	127.0.0.1
+jyoti123	06:50:02	15/03/2018	127.0.0.1
+jyoti123	07:02:50	15/03/2018	127.0.0.1
+jyoti123	07:11:38	15/03/2018	127.0.0.1
+jyoti123	07:12:59	15/03/2018	127.0.0.1
+jyoti123	07:13:43	15/03/2018	127.0.0.1
+jyoti123	07:15:24	15/03/2018	127.0.0.1
+jyoti123	07:18:03	15/03/2018	127.0.0.1
+jyoti123	07:19:15	15/03/2018	127.0.0.1
+indu	09:29:40	15/03/2018	127.0.0.1
+indu	09:30:08	15/03/2018	127.0.0.1
+indu	09:35:39	15/03/2018	127.0.0.1
+jyoti123	09:51:38	15/03/2018	127.0.0.1
+jyoti123	09:57:35	15/03/2018	127.0.0.1
+jyoti123	10:01:00	15/03/2018	127.0.0.1
+jyoti123	10:02:18	15/03/2018	127.0.0.1
+jyoti123	10:27:32	15/03/2018	127.0.0.1
+jyoti123	10:44:28	15/03/2018	127.0.0.1
+jyoti123	10:49:16	15/03/2018	127.0.0.1
+jyoti123	10:51:09	15/03/2018	127.0.0.1
+jyoti123	10:57:53	15/03/2018	127.0.0.1
+jyoti123	11:12:20	15/03/2018	127.0.0.1
+jyoti123	11:13:23	15/03/2018	127.0.0.1
+jyoti123	11:14:42	15/03/2018	127.0.0.1
+jyoti123	11:40:16	15/03/2018	127.0.0.1
+jyoti123	11:56:03	15/03/2018	127.0.0.1
+jyoti123	11:58:37	15/03/2018	127.0.0.1
+jyoti123	12:00:12	15/03/2018	127.0.0.1
+jyoti123	12:01:47	15/03/2018	127.0.0.1
+jyoti123	12:06:23	15/03/2018	127.0.0.1
+jyoti123	12:59:30	15/03/2018	127.0.0.1
+jyoti123	13:03:19	15/03/2018	127.0.0.1
+jyoti123	13:09:13	15/03/2018	127.0.0.1
+jyoti123	13:12:29	15/03/2018	127.0.0.1
+jyoti123	13:32:58	15/03/2018	127.0.0.1
+jyoti123	13:33:52	15/03/2018	127.0.0.1
+jyoti123	13:38:37	15/03/2018	127.0.0.1
+jyoti123	13:41:30	15/03/2018	127.0.0.1
+jyoti123	13:43:41	15/03/2018	127.0.0.1
+jyoti123	13:45:32	15/03/2018	127.0.0.1
+jyoti123	13:56:27	15/03/2018	127.0.0.1
+jyoti123	14:03:16	15/03/2018	127.0.0.1
+jyoti123	14:14:12	15/03/2018	127.0.0.1
+jyoti123	14:25:12	15/03/2018	127.0.0.1
+jyoti123	14:27:53	15/03/2018	127.0.0.1
+jyoti123	04:10:20	16/03/2018	127.0.0.1
+jyoti123	05:29:14	16/03/2018	127.0.0.1
+jyoti123	05:31:00	16/03/2018	127.0.0.1
+jyoti123	05:34:02	16/03/2018	127.0.0.1
+jyoti123	05:35:07	16/03/2018	127.0.0.1
+jyoti123	05:35:59	16/03/2018	127.0.0.1
+jyoti123	05:36:18	16/03/2018	127.0.0.1
+jyoti123	05:37:16	16/03/2018	127.0.0.1
+jyoti123	05:37:54	16/03/2018	127.0.0.1
+jyoti123	05:43:58	16/03/2018	127.0.0.1
+jyoti123	05:44:15	16/03/2018	127.0.0.1
+jyoti123	05:47:18	16/03/2018	127.0.0.1
+jyoti123	05:51:10	16/03/2018	127.0.0.1
+jyoti123	05:59:42	16/03/2018	127.0.0.1
+jyoti123	06:01:28	16/03/2018	127.0.0.1
+jyoti123	06:04:00	16/03/2018	127.0.0.1
+jyoti123	06:08:01	16/03/2018	127.0.0.1
+jyoti123	06:08:49	16/03/2018	127.0.0.1
+jyoti123	06:51:03	16/03/2018	127.0.0.1
+jyoti123	07:14:51	16/03/2018	127.0.0.1
+jyoti123	07:17:43	16/03/2018	127.0.0.1
+vijay	07:50:33	16/03/2018	127.0.0.1
+jyoti123	10:04:16	16/03/2018	127.0.0.1
+jyoti123	10:07:22	16/03/2018	127.0.0.1
+jyoti123	10:11:41	16/03/2018	127.0.0.1
+jyoti123	10:54:37	16/03/2018	127.0.0.1
+jyoti123	10:58:42	16/03/2018	127.0.0.1
+jyoti123	10:59:42	16/03/2018	127.0.0.1
+jyoti123	11:00:50	16/03/2018	127.0.0.1
+jyoti123	11:01:05	16/03/2018	127.0.0.1
+jyoti123	11:01:15	16/03/2018	127.0.0.1
+jyoti123	11:01:28	16/03/2018	127.0.0.1
+jyoti123	11:01:38	16/03/2018	127.0.0.1
+jyoti123	11:01:48	16/03/2018	127.0.0.1
+jyoti123	11:02:01	16/03/2018	127.0.0.1
+jyoti123	11:02:12	16/03/2018	127.0.0.1
+jyoti123	11:02:30	16/03/2018	127.0.0.1
+jyoti123	11:02:39	16/03/2018	127.0.0.1
+jyoti123	11:03:04	16/03/2018	127.0.0.1
+jyoti123	11:03:04	16/03/2018	127.0.0.1
+jyoti123	11:03:05	16/03/2018	127.0.0.1
+jyoti123	11:03:05	16/03/2018	127.0.0.1
+jyoti123	11:03:05	16/03/2018	127.0.0.1
+jyoti123	11:03:05	16/03/2018	127.0.0.1
+jyoti123	11:03:06	16/03/2018	127.0.0.1
+jyoti123	11:03:06	16/03/2018	127.0.0.1
+jyoti123	11:03:06	16/03/2018	127.0.0.1
+jyoti123	11:03:16	16/03/2018	127.0.0.1
+jyoti123	11:04:03	16/03/2018	127.0.0.1
+jyoti123	11:05:32	16/03/2018	127.0.0.1
+jyoti123	11:05:56	16/03/2018	127.0.0.1
+jyoti123	11:05:56	16/03/2018	127.0.0.1
+jyoti123	11:05:56	16/03/2018	127.0.0.1
+jyoti123	11:05:57	16/03/2018	127.0.0.1
+jyoti123	11:09:44	16/03/2018	127.0.0.1
+jyoti123	11:20:54	16/03/2018	127.0.0.1
+jyoti123	11:21:31	16/03/2018	127.0.0.1
+jyoti123	11:24:20	16/03/2018	127.0.0.1
+jyoti123	11:28:14	16/03/2018	127.0.0.1
+jyoti123	11:29:28	16/03/2018	127.0.0.1
+jyoti123	12:04:15	16/03/2018	127.0.0.1
+jyoti123	12:04:44	16/03/2018	127.0.0.1
+jyoti123	12:08:51	16/03/2018	127.0.0.1
+jyoti123	12:09:47	16/03/2018	127.0.0.1
+jyoti123	13:00:46	16/03/2018	127.0.0.1
+jyoti123	13:46:58	16/03/2018	127.0.0.1
+jyoti123	13:54:21	16/03/2018	127.0.0.1
+jyoti123	14:20:13	16/03/2018	127.0.0.1
+fgdgf	07:26:29	19/03/2018	127.0.0.1
+afafadsfasfffff	07:28:22	19/03/2018	127.0.0.1
+jyo	07:31:46	19/03/2018	127.0.0.1
+sujata	09:36:04	19/03/2018	127.0.0.1
+jyoti123	09:54:26	19/03/2018	127.0.0.1
+jyoti123	10:08:00	19/03/2018	127.0.0.1
+jyoti123	10:09:32	19/03/2018	127.0.0.1
+jyoti123	10:11:50	19/03/2018	127.0.0.1
+jyoti123	10:11:52	19/03/2018	127.0.0.1
+jyoti123	10:13:19	19/03/2018	127.0.0.1
+jyoti123	10:14:33	19/03/2018	127.0.0.1
+jyoti123	10:14:37	19/03/2018	127.0.0.1
+jyoti123	10:16:36	19/03/2018	127.0.0.1
+jyoti123	10:17:26	19/03/2018	127.0.0.1
+jyoti123	10:17:27	19/03/2018	127.0.0.1
+jyoti123	10:17:41	19/03/2018	127.0.0.1
+jyoti123	10:18:06	19/03/2018	127.0.0.1
+jyoti123	10:21:55	19/03/2018	127.0.0.1
+jyoti123	10:28:48	19/03/2018	127.0.0.1
+jyoti123	10:30:49	19/03/2018	127.0.0.1
+jyoti123	10:31:19	19/03/2018	127.0.0.1
+jyoti123	10:38:27	19/03/2018	127.0.0.1
+jyoti123	10:40:42	19/03/2018	127.0.0.1
+jyoti123	10:45:35	19/03/2018	127.0.0.1
+jyoti123	10:47:15	19/03/2018	127.0.0.1
+jyoti123	10:49:45	19/03/2018	127.0.0.1
+jyoti123	10:54:05	19/03/2018	127.0.0.1
+indu	11:09:13	19/03/2018	127.0.0.1
+indu	11:09:26	19/03/2018	127.0.0.1
+jyoti123	11:13:37	19/03/2018	127.0.0.1
+jyoti123	11:19:57	19/03/2018	127.0.0.1
+jyoti123	11:51:54	19/03/2018	127.0.0.1
+jyoti123	11:59:32	19/03/2018	127.0.0.1
+jyoti123	12:18:06	19/03/2018	127.0.0.1
+jyoti123	12:22:52	19/03/2018	127.0.0.1
+Test	12:25:09	19/03/2018	127.0.0.1
+jyoti123	12:26:46	19/03/2018	127.0.0.1
+jyoti123	12:36:44	19/03/2018	127.0.0.1
+jyoti123	12:38:23	19/03/2018	127.0.0.1
+jyoti123	12:39:39	19/03/2018	127.0.0.1
+jyoti123	12:42:21	19/03/2018	127.0.0.1
+jyoti123	12:50:56	19/03/2018	127.0.0.1
+jyoti123	12:53:56	19/03/2018	127.0.0.1
+jyoti123	12:55:52	19/03/2018	127.0.0.1
+jyoti123	12:57:17	19/03/2018	127.0.0.1
+jyoti123	13:04:49	19/03/2018	127.0.0.1
+jyoti123	13:08:42	19/03/2018	127.0.0.1
+jyoti123	13:11:53	19/03/2018	127.0.0.1
+jyoti123	13:15:34	19/03/2018	127.0.0.1
+jyoti123	13:16:49	19/03/2018	127.0.0.1
+indu	13:19:34	19/03/2018	127.0.0.1
+jyoti123	13:28:23	19/03/2018	127.0.0.1
+jyoti123	13:37:43	19/03/2018	127.0.0.1
+jyoti123	13:39:33	19/03/2018	127.0.0.1
+jyoti123	13:41:41	19/03/2018	127.0.0.1
+jyoti123	13:43:03	19/03/2018	127.0.0.1
+jyoti123	13:44:25	19/03/2018	127.0.0.1
+jyoti123	13:46:03	19/03/2018	127.0.0.1
+jyoti123	13:49:10	19/03/2018	127.0.0.1
+jyoti123	13:53:15	19/03/2018	127.0.0.1
+jyoti123	13:55:23	19/03/2018	127.0.0.1
+jyoti123	13:57:17	19/03/2018	127.0.0.1
+jyoti123	14:00:02	19/03/2018	127.0.0.1
+jyoti123	14:02:33	19/03/2018	127.0.0.1
+jyoti123	14:04:06	19/03/2018	127.0.0.1
+jyo12	02:39:41	19/03/2018	127.0.0.1
+jyoti123	03:41:33	20/03/2018	127.0.0.1
+jyoti123	04:08:40	20/03/2018	127.0.0.1
+jyoti123	04:11:16	20/03/2018	127.0.0.1
+jyoti123	04:13:41	20/03/2018	127.0.0.1
+jyoti123	05:02:56	20/03/2018	127.0.0.1
+jyoti123	05:52:42	20/03/2018	127.0.0.1
+jyoti123	05:55:00	20/03/2018	127.0.0.1
+jyoti123	05:57:31	20/03/2018	127.0.0.1
+jyoti123	06:02:14	20/03/2018	127.0.0.1
+jyoti123	06:05:48	20/03/2018	127.0.0.1
+jyoti123	06:06:52	20/03/2018	127.0.0.1
+jyoti123	06:13:34	20/03/2018	127.0.0.1
+jyoti123	06:31:04	20/03/2018	127.0.0.1
+jyoti123	06:33:33	20/03/2018	127.0.0.1
+jyoti123	06:34:40	20/03/2018	127.0.0.1
+jyoti123	06:41:24	20/03/2018	127.0.0.1
+jyoti123	06:44:17	20/03/2018	127.0.0.1
+jyoti123	06:53:05	20/03/2018	127.0.0.1
+jyoti123	07:10:45	20/03/2018	127.0.0.1
+jyoti123	07:12:09	20/03/2018	127.0.0.1
+jyoti123	07:15:54	20/03/2018	127.0.0.1
+jyoti123	07:20:56	20/03/2018	127.0.0.1
+jyoti123	07:40:19	20/03/2018	127.0.0.1
+jyoti123	07:42:21	20/03/2018	127.0.0.1
+jyoti123	07:46:11	20/03/2018	127.0.0.1
+indu	07:46:54	20/03/2018	127.0.0.1
+indu	07:47:27	20/03/2018	127.0.0.1
+jyoti123	07:47:36	20/03/2018	127.0.0.1
+jyoti123	09:23:28	20/03/2018	127.0.0.1
+jyoti123	10:50:40	20/03/2018	127.0.0.1
+jyoti123	11:01:15	20/03/2018	127.0.0.1
+jyoti123	11:01:41	20/03/2018	127.0.0.1
+jyoti123	12:03:49	20/03/2018	127.0.0.1
+jyoti123	12:14:40	20/03/2018	127.0.0.1
+jyoti123	12:40:58	20/03/2018	127.0.0.1
+jyoti123	12:51:40	20/03/2018	127.0.0.1
+jyoti123	13:07:24	20/03/2018	127.0.0.1
+jyoti123	13:22:00	20/03/2018	127.0.0.1
+jyoti123	13:23:55	20/03/2018	127.0.0.1
+jyoti123	13:29:19	20/03/2018	127.0.0.1
+\.
+
+
+--
+-- Data for Name: program_histories; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY program_histories (slno, username, program_name, input, output, date, "time", ip_address) FROM stdin;
+1	b	SumOfDigits	519	25	sdf	asdf	asdf
+2	b	SumOfDigit	213<br>	6<br>	06/03/2018	13:07:39	127.0.0.1
+3	b	SumOfDigit	213<br>	6<br>	06/03/2018	13:07:42	127.0.0.1
+4	d	SumOfDigit	234153245<br>	29<br>	06/03/2018	20:13:54	127.0.0.1
+5	d	TrickOrTreat	Vampires: 1, Zombies: 1, Witches: 1, Houses: 1<br>       Vampires: 3, Zombies: 2, Witches: 1, Houses: 10<br>	4<br>36<br>	06/03/2018	20:16:33	127.0.0.1
+6	d	SumOfDigit	2143124<br>	17<br>	07/03/2018	14:48:08	127.0.0.1
+7	d	SumOfDigit	123424234<br>	25<br>	07/03/2018	20:05:05	127.0.0.1
+8	d	SumOfDigit	2134234<br>	19<br>	07/03/2018	20:05:23	127.0.0.1
+9	d	SumOfDigit	2134234<br>	19<br>	07/03/2018	20:05:30	127.0.0.1
+10	d	SumOfDigit	234234234<br>	27<br>	07/03/2018	20:05:45	127.0.0.1
+11	d	SumOfDigit	234234234<br>	27<br>	07/03/2018	20:06:50	127.0.0.1
+12	d	SumOfDigit	input=2423425<br>	invalid input.<br>	07/03/2018	20:12:08	127.0.0.1
+13	d	SumOfDigit	input=12323443<br>	invalid input.<br>	07/03/2018	20:13:07	127.0.0.1
+14	d	SumOfDigit	input=23423455\n	invalid input.\n	08/03/2018	11:05:22	127.0.0.1
+15	d	SumOfDigit	2342432\n	20\n	08/03/2018	11:12:56	127.0.0.1
+16	d	SumOfDigit	23434234\n	25\n	08/03/2018	11:31:08	127.0.0.1
+17	d	SumOfDigit	23\n454\n234\n	5\n13\n9\n	08/03/2018	11:32:02	127.0.0.1
+18	d	SumOfDigit	input value\n	invalid input.\n	08/03/2018	12:28:01	127.0.0.1
+19	d	SumOfDigit	1\n	1\n	08/03/2018	12:29:41	127.0.0.1
+20	d	SumOfDigit	1\n	1\n	08/03/2018	12:30:32	127.0.0.1
+21	d	SumOfDigit	123\n	6\n	08/03/2018	12:30:51	127.0.0.1
+22	d	SumOfDigit	12342323\n	20\n	08/03/2018	15:03:10	127.0.0.1
+23	d	SumOfDigit	23322423442\n	31\n	08/03/2018	17:34:39	127.0.0.1
+24	d	SumOfDigit	123123\n	12\n	08/03/2018	17:38:39	127.0.0.1
+25	d123	RollerCoaster	To be, or not to be: that is the question.\n   \t    Whether tis nobler in the mind to suffer.\n   \t    The slings and arrows of outrageous fortune.\n   \t    Or to take arms against a sea of troubles.\n   \t    And by opposing end them, to die: to sleep.\n	To Be, Or NoT tO bE: tHaT iS tHe QuEsTiOn.\nWhEtHeR tIs NoBlEr In ThE mInD tO sUfFeR.\nThE sLiNgS aNd ArRoWs Of OuTrAgEoUs FoRtUnE.\nOr To TaKe ArMs AgAiNsT a SeA oF tRoUbLeS.\nAnD bY oPpOsInG eNd ThEm, To DiE: tO sLeEp.\n	08/03/2018	17:48:23	127.0.0.1
+26	d123	Sample	input value\n		08/03/2018	17:56:25	127.0.0.1
+27	d123	Sample	input value\n	FGDF\n	08/03/2018	17:56:39	127.0.0.1
+28	d123	Sample	input value\n	FGDF\n	08/03/2018	17:57:01	127.0.0.1
+29	null	SumOfDigit	234324\n	18\n	08/03/2018	19:20:06	127.0.0.1
+30	e	SumOfDigit	34232343432\n	33\n	08/03/2018	19:42:23	127.0.0.1
+31	e	SumOfDigit	12343423423\n	31\n	09/03/2018	09:50:44	127.0.0.1
+32	e	SumOfDigit	23234234\n	23\n	09/03/2018	09:51:58	127.0.0.1
+33	vijay	SumOfDigit	input value\n	invalid input.\n	10/03/2018	11:27:04	127.0.0.1
+34	vijay	SumOfDigit	1233\n	9\n	10/03/2018	11:32:22	127.0.0.1
+35	vijay	SumOfDigit	1234\n	10\n	10/03/2018	11:36:51	127.0.0.1
+36	vijay	TrickOrTreat	1234\n	invalid input format.\n	10/03/2018	07:21:32	127.0.0.1
+37	vijay	SumOfDigit	123\n	6\n	10/03/2018	07:21:48	127.0.0.1
+38	jyoti	SumOfDigit	1234232111111111111113232211111111111111111111111111111111111111111111111111111111111111111111111111111111111\n	126\n	10/03/2018	07:25:04	127.0.0.1
+39	jyoti	SumOfDigit	1234\n	10\n	10/03/2018	09:24:11	127.0.0.1
+40	jyoti	SumOfDigit	1234\n	10\n	10/03/2018	09:25:01	127.0.0.1
+41	jyoti	SumOfDigit	1234\n	10\n	10/03/2018	09:33:23	127.0.0.1
+42	jyoti	SumOfDigit	1234\n	10\n	10/03/2018	09:35:06	127.0.0.1
+43	jyoti	SumOfDigit	1234\n	10\n	10/03/2018	09:36:18	127.0.0.1
+44	jyoti	SumOfDigit	1234\n	10\n	10/03/2018	09:39:29	127.0.0.1
+45	jyoti	SumOfDigit	1234\n	10\n	10/03/2018	10:47:00	127.0.0.1
+46	jyoti	SumOfDigit	12344343333333333333333333\n	78\n	10/03/2018	10:49:20	127.0.0.1
+47	jyoti	SumOfDigit	2334\n	12\n	10/03/2018	10:51:44	127.0.0.1
+48	jyoti	SumOfDigit	12233\n	11\n	10/03/2018	11:39:47	127.0.0.1
+49	jyoti	SumOfDigit	12321\n	9\n	13/03/2018	07:06:05	127.0.0.1
+50	jyoti123	SumOfDigit	123123\n	12\n	14/03/2018	04:46:24	127.0.0.1
+51	jyoti123	SumOfDigit	12323\n	11\n	14/03/2018	04:49:15	127.0.0.1
+52	jyoti123	SumOfDigit	123213\n	12\n	14/03/2018	04:51:46	127.0.0.1
+53	jyoti123	TrickOrTreat	123123\n	invalid input format.\n	14/03/2018	04:54:48	127.0.0.1
+54	jyoti123	SumOfDigit	23123\n	11\n	14/03/2018	04:59:11	127.0.0.1
+55	jyoti123	TrickOrTreat	asdf\n	invalid input format.\n	14/03/2018	05:04:46	127.0.0.1
+56	jyoti123	TrickOrTreat	qwerty\n	invalid input format.\n	14/03/2018	05:06:23	127.0.0.1
+57	jyoti123	SumOfDigit	1232\n	8\n	14/03/2018	05:51:57	127.0.0.1
+58	jyoti123	SumOfDigit	23123\n	11\n	14/03/2018	06:00:23	127.0.0.1
+59	jyoti123	SumOfDigit	1234\n	10\n	14/03/2018	06:03:22	127.0.0.1
+60	jyoti123	SumOfDigit	1234\n	10\n	14/03/2018	06:06:54	127.0.0.1
+61	jyoti123	SumOfDigit	1232\n	8\n	14/03/2018	06:07:21	127.0.0.1
+62	jyoti123	SumOfDigit	12312\n	9\n	14/03/2018	06:11:24	127.0.0.1
+63	jyoti123	SumOfDigit	1223\n	8\n	14/03/2018	06:12:42	127.0.0.1
+64	jyoti123	SumOfDigit	123\n	6\n	14/03/2018	06:15:58	127.0.0.1
+65	jyoti123	SumOfDigit	232\n	7\n	14/03/2018	06:16:02	127.0.0.1
+66	jyoti123	SumOfDigit	12323\n	11\n	14/03/2018	06:17:17	127.0.0.1
+67	jyoti123	SumOfDigit	12312\n	9\n	14/03/2018	06:18:33	127.0.0.1
+68	jyoti123	SumOfDigit	12323\n	11\n	14/03/2018	06:19:36	127.0.0.1
+69	jyoti123	SumOfDigit	12312\n	9\n	14/03/2018	06:21:09	127.0.0.1
+70	jyoti123	SumOfDigit	1232\n	8\n	14/03/2018	06:22:06	127.0.0.1
+71	jyoti123	SumOfDigit	123123\n	12\n	14/03/2018	06:23:10	127.0.0.1
+72	jyoti123	SumOfDigit	1312\n	7\n	14/03/2018	06:24:14	127.0.0.1
+73	jyoti123	SumOfDigit	131\n	5\n	14/03/2018	06:26:01	127.0.0.1
+74	jyoti123	SumOfDigit	12312\n	9\n	14/03/2018	06:27:33	127.0.0.1
+75	jyoti123	SumOfDigit	12312\n	9\n	14/03/2018	06:40:42	127.0.0.1
+76	jyoti123	SumOfDigit	12312\n	9\n	14/03/2018	06:41:51	127.0.0.1
+77	jyoti123	SumOfDigit		empty file.\n	14/03/2018	06:50:16	127.0.0.1
+78	jyoti123	SumOfDigit		empty file.\n	14/03/2018	06:50:46	127.0.0.1
+79	jyoti123	SumOfDigit		empty file.\n	14/03/2018	06:51:30	127.0.0.1
+80	jyoti123	SumOfDigit		empty file.\n	14/03/2018	06:52:25	127.0.0.1
+81	jyoti123	SumOfDigit		empty file.\n	14/03/2018	06:52:41	127.0.0.1
+82	jyoti123	SumOfDigit	213123\n	12\n	14/03/2018	06:54:11	127.0.0.1
+83	jyoti123	SumOfDigit		empty file.\n	14/03/2018	06:54:19	127.0.0.1
+84	jyoti123	SumOfDigit		empty file.\n	14/03/2018	06:56:53	127.0.0.1
+85	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:13:16	127.0.0.1
+86	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:13:49	127.0.0.1
+87	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:15:34	127.0.0.1
+88	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:16:23	127.0.0.1
+89	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:16:27	127.0.0.1
+90	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:16:28	127.0.0.1
+91	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:16:34	127.0.0.1
+92	jyoti123	SumOfDigit	12332\n	11\n	14/03/2018	07:18:51	127.0.0.1
+93	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:19:01	127.0.0.1
+94	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:20:52	127.0.0.1
+95	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:21:13	127.0.0.1
+96	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:21:44	127.0.0.1
+97	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:21:50	127.0.0.1
+98	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:22:10	127.0.0.1
+99	jyoti123	SumOfDigit		empty file.\n	14/03/2018	07:23:33	127.0.0.1
+100	jyoti123	SumOfDigit	123123\n	12\n	14/03/2018	13:41:27	127.0.0.1
+101	indu	SumOfDigit	eretyyu8i9u0\n	invalid input.\n	14/03/2018	13:55:10	127.0.0.1
+102	indu	SumOfDigit	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n	invalid input.\nblank line.\ninvalid input.\n	14/03/2018	13:55:23	127.0.0.1
+103	jyoti123	TrickOrTreat	12345\n	invalid input format.\n	15/03/2018	05:40:42	127.0.0.1
+104	jyoti123	TrickOrTreat	23123\n	invalid input format.\n	15/03/2018	06:52:35	127.0.0.1
+105	jyoti123	SumOfDigit1	1231232\n		15/03/2018	06:54:19	127.0.0.1
+106	jyoti123	SumOfDigit1	1231232\n		15/03/2018	06:54:20	127.0.0.1
+107	jyoti123	SumOfDigit1	1231232\n		15/03/2018	06:54:20	127.0.0.1
+108	jyoti123	SumOfDigit1	1231232\n		15/03/2018	06:54:21	127.0.0.1
+109	jyoti123	SumOfDigit1	1231232\n		15/03/2018	06:54:22	127.0.0.1
+110	jyoti123	SumOfDigit1	123123\n		15/03/2018	06:54:31	127.0.0.1
+111	jyoti123	SumOfDigit1	123123\n		15/03/2018	06:54:33	127.0.0.1
+112	jyoti123	SumOfDigit1	123123\n		15/03/2018	06:54:33	127.0.0.1
+113	jyoti123	LongestWord	wqeqweqeqwe\n	wqeqweqeqwe\n	15/03/2018	06:54:41	127.0.0.1
+114	jyoti123	LongestWord	wqeqweqeqwe\n	wqeqweqeqwe\n	15/03/2018	06:55:32	127.0.0.1
+115	jyoti123	SumOfDigit1	2131312323\n		15/03/2018	06:59:53	127.0.0.1
+116	jyoti123	SumOfDigit1	2131312323\n		15/03/2018	06:59:54	127.0.0.1
+117	jyoti123	SumOfDigit1	2131312323\n		15/03/2018	06:59:55	127.0.0.1
+118	jyoti123	LongestWord	123123123123eerwerf\n	123123123123eerwerf\n	15/03/2018	07:00:04	127.0.0.1
+119	jyoti123	LongestWord	wqeqwe2e23eqw2w\n	wqeqwe2e23eqw2w\n	15/03/2018	07:02:52	127.0.0.1
+120	jyoti123	LongestWord	wqeqwe2e23eqw2w\n	wqeqwe2e23eqw2w\n	15/03/2018	07:06:31	127.0.0.1
+121	jyoti123	LongestWord	123132313\n	123132313\n	15/03/2018	07:19:23	127.0.0.1
+122	jyoti123	TrickOrTreat	qSDFGHJHREWERTYUKJHGFDSDGHJKHGFDGHJHGFDSADFGHJHGFDSAHJHFDSDFGHHGS\nSDFGFDFGHFDSDFGHGWERHHGWWERGHJHGFDDFGHJJDFGHJHSDFG\n	invalid input format.\ninvalid input format.\n	15/03/2018	10:28:30	127.0.0.1
+123	jyoti123	TrickOrTreat	qSDFGHJHREWERTYUKJHGFDSDGHJKHGFDGHJHGFDSADFGHJHGFDSAHJHFDSDFGHHGS23456765234652234\nSDFGFDFGHFDSDFGHGWERHHGWWERGHJHGFDDFGHJJDFGHJHSDFG234567890-=09876543212345678987654321123456776554321\n	invalid input format.\ninvalid input format.\n	15/03/2018	10:28:42	127.0.0.1
+124	jyoti123	SumOfDigit1	1243\n		15/03/2018	10:59:54	127.0.0.1
+125	jyoti123	SumOfDigit1	1243\n		15/03/2018	10:59:56	127.0.0.1
+126	jyoti123	SumOfDigit1	1243\n		15/03/2018	10:59:57	127.0.0.1
+127	jyoti123	SumOfDigit1	1243\n		15/03/2018	10:59:57	127.0.0.1
+128	jyoti123	SumOfDigit1	1243\n		15/03/2018	10:59:57	127.0.0.1
+129	jyoti123	SumOfDigit1	12345\n		15/03/2018	11:02:39	127.0.0.1
+130	jyoti123	SumOfDigit1	12345\n		15/03/2018	11:02:41	127.0.0.1
+131	jyoti123	LongestWord	 abcdefghik\n    Xa},A#5N}{xOBwYBHIlH,#W\n    (ABW>"yy"^M{X-K}q\n    6240488\n	abcdefghik\nXa},A#5N}{xOBwYBHIlH,#W\n(ABW>"yy"^M{X-K}q\n6240488\n	15/03/2018	11:03:00	127.0.0.1
+132	jyoti123	SwapCase	shankar\n	SHANKAR\n	15/03/2018	11:03:46	127.0.0.1
+133	jyoti123	ReverseWord	wefwffre\n	wefwffre \n	15/03/2018	11:07:35	127.0.0.1
+134	jyoti123	ReverseWord	ahsahbsjasb\n	ahsahbsjasb \n	15/03/2018	11:07:38	127.0.0.1
+135	jyoti123	ReverseWord	ahsahbsjasb\n	ahsahbsjasb \n	15/03/2018	11:07:49	127.0.0.1
+136	jyoti123	SumOfDigit1	weqw32434\n		15/03/2018	11:08:20	127.0.0.1
+137	jyoti123	SumOfDigit1	weqw32434\n		15/03/2018	11:08:22	127.0.0.1
+138	jyoti123	SumOfDigit1	weqw32434\n		15/03/2018	11:08:22	127.0.0.1
+139	jyoti123	SumOfDigit1	weqw32434\n		15/03/2018	11:08:23	127.0.0.1
+140	jyoti123	SumOfDigit1	weqw32434\n		15/03/2018	11:08:23	127.0.0.1
+141	jyoti123	TrickOrTreat	eter\n	invalid input format.\n	15/03/2018	12:11:33	127.0.0.1
+142	jyoti123	LongestWord	12312wweqw\n	12312wweqw\n	15/03/2018	13:33:01	127.0.0.1
+143	jyoti123	LongestWord	12wqwqwqw\n	12wqwqwqw\n	15/03/2018	13:33:54	127.0.0.1
+144	jyoti123	LongestWord	2312312\n12312321\n12321312\n	2312312\n12312321\n12321312\n	15/03/2018	13:38:46	127.0.0.1
+145	jyoti123	LongestWord	12313221\n\n23123\n123\n312\n3\n213\n	12313221\nblank line\n23123\n123\n312\n3\n213\n	15/03/2018	13:41:39	127.0.0.1
+146	jyoti123	LongestWord	233212\n2131\n	233212\n2131\n	15/03/2018	13:43:55	127.0.0.1
+147	jyoti123	ReverseWord	sddds\nasdsadas\n	sddds \nasdsadas \n	15/03/2018	13:45:44	127.0.0.1
+148	jyoti123	LongestWord	1231232\n23123\n123123\n123123123\n	1231232\n23123\n123123\n123123123\n	15/03/2018	14:03:26	127.0.0.1
+149	jyoti123	LongestWord	12321\n21312\n123213123123123\n12312321\n23123232\n	12321\n21312\n123213123123123\n12312321\n23123232\n	15/03/2018	14:25:23	127.0.0.1
+150	jyoti123	LongestWord	 abcdefghik\n    Xa},A#5N}{xOBwYBHIlH,#W\n    (ABW>"yy"^M{X-K}q\n    6240488\n	abcdefghik\nXa},A#5N}{xOBwYBHIlH,#W\n(ABW>"yy"^M{X-K}q\n6240488\n	15/03/2018	14:28:04	127.0.0.1
+151	jyoti123	LongestWord	 abcdefghik\n    Xa},A#5N}{xOBwYBHIlH,#W\n    (ABW>"yy"^M{X-K}q\n    6240488\n	abcdefghik\nXa},A#5N}{xOBwYBHIlH,#W\n(ABW>"yy"^M{X-K}q\n6240488\n	15/03/2018	14:28:10	127.0.0.1
+152	jyoti123	LongestWord	ewerwer\nwewe\nwerwer\nwerwerew\n	ewerwer\nwewe\nwerwer\nwerwerew\n	15/03/2018	14:28:21	127.0.0.1
+153	jyoti123	SumOfDigit1	12312\n12321\n2323123213\n		16/03/2018	04:11:17	127.0.0.1
+154	jyoti123	SumOfDigit1	12312\n12321\n2323123213\n		16/03/2018	04:11:19	127.0.0.1
+155	jyoti123	ReverseWord	1232321\n213123\n12311231223\n2321\n	1232321 \n213123 \n12311231223 \n2321 \n	16/03/2018	04:11:34	127.0.0.1
+156	jyoti123	ReverseWord	1232321\n213123\n12311231223\n2321\n	1232321 \n213123 \n12311231223 \n2321 \n	16/03/2018	05:27:27	127.0.0.1
+157	jyoti123	TrickOrTreat	12323123\n	invalid input format.\n	16/03/2018	06:51:06	127.0.0.1
+158	jyoti123	SumOfDigits	123123213\n23123\n2321323\n2323223\n232323\n2\n32323\n		16/03/2018	06:51:29	127.0.0.1
+159	jyoti123	SumOfDigits	123123213\n23123\n2321323\n2323223\n232323\n2\n32323\n	18\n11\n16\n17\n15\n2\n13\n	16/03/2018	06:51:32	127.0.0.1
+160	jyoti123	SumOfDigits	123123213\n23123\n2321323\n2323223\n23232\n	18\n11\n16\n17\n12\n	16/03/2018	06:52:01	127.0.0.1
+161	jyoti123	ReverseWords	sdd\n		16/03/2018	11:30:54	127.0.0.1
+162	jyoti123	ReverseWords	sdd\n		16/03/2018	11:59:44	127.0.0.1
+163	jyoti123	SumOfDigits	rwererw\n	invalid input\n	16/03/2018	12:04:18	127.0.0.1
+164	jyoti123	SumOfDigits	2342342314\n	28\n	16/03/2018	12:04:49	127.0.0.1
+165	jyoti123	TrickOrTreat	erwrwre\n	invalid input format.\n	16/03/2018	12:07:03	127.0.0.1
+166	jyoti123	SumOfDigits	wewrereww\n	invalid input\n	16/03/2018	12:09:05	127.0.0.1
+167	jyoti123	SumOfDigits	ewrwereer3\n	invalid input\n	16/03/2018	12:09:16	127.0.0.1
+168	jyoti123	SumOfDigits	fsdf\n	invalid input\n	16/03/2018	12:09:39	127.0.0.1
+169	jyoti123	HiddenDigits	dfsddfsd\n		16/03/2018	12:09:53	127.0.0.1
+170	jyoti123	HiddenDigits	dfsddfsd\n	353353\n	16/03/2018	12:09:56	127.0.0.1
+171	jyoti123	SumOfDigits	12312312331231223213\n	41\n	16/03/2018	12:10:15	127.0.0.1
+172	sujata	TrickOrTreat	weqeqwewe\n	invalid input format.\n	19/03/2018	09:39:40	127.0.0.1
+173	jyoti123	TrickOrTreat	2312\n	invalid input format.\n	19/03/2018	10:09:35	127.0.0.1
+174	jyoti123	SumOfDigits	2313\n	9\n	19/03/2018	10:11:59	127.0.0.1
+175	jyoti123	SumOfDigits	12312\n	9\n	19/03/2018	10:13:22	127.0.0.1
+176	jyoti123	SumOfDigits	1321\n	7\n	19/03/2018	10:18:11	127.0.0.1
+177	jyoti123	SumOfDigits	123213\n	12\n	19/03/2018	10:21:57	127.0.0.1
+178	jyoti123	SumOfDigits	123123\n	12\n	19/03/2018	10:28:51	127.0.0.1
+179	jyoti123	SumOfDigits	12312332\n	17\n	19/03/2018	10:31:21	127.0.0.1
+180	jyoti123	SumOfDigits	123123\n	12\n	19/03/2018	10:38:43	127.0.0.1
+181	jyoti123	SumOfDigits	123133\n	13\n	19/03/2018	10:39:04	127.0.0.1
+182	jyoti123	SumOfDigits	123123\n	12\n	19/03/2018	10:40:45	127.0.0.1
+183	jyoti123	SumOfDigits	123123\n	12\n	19/03/2018	10:41:30	127.0.0.1
+184	jyoti123	SumOfDigits	12312\n	9\n	19/03/2018	10:45:37	127.0.0.1
+185	jyoti123	SumOfDigits	12323\n	11\n	19/03/2018	10:47:18	127.0.0.1
+186	jyoti123	SumOfDigits	123312\n	12\n	19/03/2018	10:49:47	127.0.0.1
+187	jyoti123	SumOfDigits	123\n	6\n	19/03/2018	10:50:21	127.0.0.1
+188	jyoti123	SumOfDigits	1312\n	7\n	19/03/2018	10:54:08	127.0.0.1
+189	jyoti123	SumOfDigits	2311111111111\n	16\n	19/03/2018	12:01:03	127.0.0.1
+190	jyoti123	SumOfDigits	12322222\n	16\n	19/03/2018	12:18:15	127.0.0.1
+191	jyoti123	SumOfDigits	131\n	5\n	19/03/2018	12:22:54	127.0.0.1
+192	jyoti123	SumOfDigits	123123\n	12\n	19/03/2018	12:26:51	127.0.0.1
+193	jyoti123	SumOfDigits	123123\n	12\n	19/03/2018	12:29:33	127.0.0.1
+194	jyoti123	SumOfDigits	212331\n	12\n	19/03/2018	12:30:07	127.0.0.1
+195	jyoti123	SumOfDigits	1212122121222222222222222222222222222\n	69\n	19/03/2018	12:30:28	127.0.0.1
+196	jyoti123	SumOfDigits	21212313123\n	21\n	19/03/2018	12:36:47	127.0.0.1
+197	jyoti123	SumOfDigits	12321\n	9\n	19/03/2018	12:38:26	127.0.0.1
+198	jyoti123	SumOfDigits	1234\n	10\n	19/03/2018	12:39:55	127.0.0.1
+199	jyoti123	SumOfDigits	12\n	3\n	19/03/2018	12:40:19	127.0.0.1
+200	jyoti123	SumOfDigits	1234\n	10\n	19/03/2018	12:40:51	127.0.0.1
+201	jyoti123	SumOfDigits	122131332\n	18\n	19/03/2018	12:41:26	127.0.0.1
+202	jyoti123	SumOfDigits	123\n	6\n	19/03/2018	12:41:44	127.0.0.1
+203	jyoti123	SumOfDigits	123\n	6\n	19/03/2018	12:41:56	127.0.0.1
+204	jyoti123	SumOfDigits	1234\n	10\n	19/03/2018	12:42:27	127.0.0.1
+205	jyoti123	TrickOrTreat	1234\n1234\n	invalid input format.\ninvalid input format.\n	19/03/2018	12:51:11	127.0.0.1
+206	jyoti123	SumOfDigits	123\n12321\n1233\n	6\n9\n9\n	19/03/2018	12:51:28	127.0.0.1
+207	jyoti123	HiddenDigits	 abcdefghik\n Xa},A#5N}{xOBwYBHIlH,#W\n(ABW>"yy"^M{X-K}q\n    6240488\n	012345678\n05\nNONE\n6240488\n	19/03/2018	12:52:22	127.0.0.1
+208	jyoti123	HiddenDigits	 abcdefghik\n Xa},A#5N}{xOBwYBHIlH,#W\n	012345678\n05\n	19/03/2018	12:52:36	127.0.0.1
+209	jyoti123	LongestWords	23123213\n123213\n21312\n		19/03/2018	12:52:53	127.0.0.1
+210	jyoti123	LongestWords	23123213\n123213\n21312\n		19/03/2018	12:52:55	127.0.0.1
+211	jyoti123	LongestWords	23123213\n123213\n21312\n		19/03/2018	12:52:57	127.0.0.1
+212	jyoti123	LongestWords	23123213\n123213\n21312\n		19/03/2018	12:53:02	127.0.0.1
+213	jyoti123	LongestWords	213434\n		19/03/2018	12:54:04	127.0.0.1
+214	jyoti123	TrickOrTreat	Vampires: 1, Zombies: 1, Witches: 1, Houses: 1\n    Vampires: 3, Zombies: 2, Witches: 1, Houses: 10\n	4\n36\n	19/03/2018	12:54:40	127.0.0.1
+215	jyoti123	SumOfDigits	12312%0D%0A12312\n	invalid input\n	19/03/2018	12:55:57	127.0.0.1
+216	jyoti123	SumOfDigits	123123\n	12\n	19/03/2018	12:56:11	127.0.0.1
+217	jyoti123	SumOfDigits	1232\n123321\n	8\n12\n	19/03/2018	12:56:31	127.0.0.1
+218	jyoti123	HiddenDigits	1232\n232\n	1232\n232\n	19/03/2018	12:57:27	127.0.0.1
+219	jyoti123	SumOfDigits	12132\n12323\n	9\n11\n	19/03/2018	12:57:48	127.0.0.1
+220	jyoti123	SumOfDigits	123123\n123123\n	12\n12\n	19/03/2018	13:28:44	127.0.0.1
+221	jyoti123	SumOfDigits	123\n123321\n	6\n12\n	19/03/2018	13:37:50	127.0.0.1
+222	jyoti123	SumOfDigits	12332%0D%0A13123123\n	invalid input\n	19/03/2018	13:39:38	127.0.0.1
+223	jyoti123	SumOfDigits	12312\n12312\n	9\n9\n	19/03/2018	13:40:00	127.0.0.1
+224	jyoti123	SumOfDigits	1232\n2312323\n	8\n16\n	19/03/2018	13:41:47	127.0.0.1
+225	jyoti123	TrickOrTreat	31324\n23456789\n	invalid input format.\ninvalid input format.\n	19/03/2018	13:43:09	127.0.0.1
+226	jyoti123	SumOfDigits	1232\n2321313212321\n	8\n26\n	19/03/2018	13:44:33	127.0.0.1
+227	jyoti123	SumOfDigits	123\n12321321\n	6\n15\n	19/03/2018	13:46:10	127.0.0.1
+228	jyoti123	HiddenDigits	242342\n	242342\n	19/03/2018	13:49:13	127.0.0.1
+229	jyoti123	SumOfDigits	1232\n1231233\n	8\n15\n	19/03/2018	13:53:24	127.0.0.1
+230	jyoti123	SumOfDigits	1232\n23123\n	8\n11\n	19/03/2018	13:55:29	127.0.0.1
+231	jyoti123	SumOfDigits	123\n12312\n	6\n9\n	19/03/2018	13:57:22	127.0.0.1
+232	jyoti123	SumOfDigits	13\n231\n	4\n6\n	19/03/2018	14:00:13	127.0.0.1
+233	jyoti123	HiddenDigits	  abcdefghik\n    Xa},A#5N}{xOBwYBHIlH,#W\n    (ABW>"yy"^M{X-K}q\n    6240488\n	012345678\n05\nNONE\n6240488\n	19/03/2018	14:00:34	127.0.0.1
+234	jyoti123	HiddenDigits	abcdefghik\n    Xa},A#5N}{xOBwYBHIlH,#W\n    (ABW>"yy"^M{X-K}q\n    6240488\n	012345678\n05\nNONE\n6240488\n	19/03/2018	14:01:13	127.0.0.1
+235	jyoti123	SumOfDigits	2312213123\n1233212\n	20\n14\n	19/03/2018	14:01:23	127.0.0.1
+236	jyoti123	SumOfDigits	123\n123213\n	6\n12\n	19/03/2018	14:02:41	127.0.0.1
+237	jyoti123	TrickOrTreat	Vampires: 1, Zombies: 1, Witches: 1, Houses: 1\n    Vampires: 3, Zombies: 2, Witches: 1, Houses: 10\n	4\n36\n	19/03/2018	14:03:01	127.0.0.1
+238	jyoti123	SumOfDigits	123\n1231231\n	6\n13\n	19/03/2018	14:04:13	127.0.0.1
+239	jyoti123	SumOfDigits	2132\n21312312\n23213\n	8\n15\n11\n	19/03/2018	14:05:10	127.0.0.1
+240	jyoti123	TrickOrTreat	123456789\n	invalid input format.\n	20/03/2018	06:32:32	127.0.0.1
+241	jyoti123	SumOfDigits	12312\n	9\n	20/03/2018	07:42:39	127.0.0.1
+242	jyoti123	SumOfDigits	132\n\n123231\n123\n1311\n	6\nblank line\n12\n6\n6\n	20/03/2018	09:38:34	127.0.0.1
+243	jyoti123	SumOfDigits	12321\n213123\n13\n232\n312\n31231\n2312312312\n123122222222222222222222222222222222222222222222222222222222222222222222222222222222222222\n	9\n12\n4\n7\n6\n10\n20\n179\n	20/03/2018	09:39:12	127.0.0.1
+244	jyoti123	TrickOrTreat	123%0D%0A1244%0D%0A423%0D%0A4%0D%0A3423%0D%0A3423%0D%0A423423%0D%0A34%0D%0A233233%0D%0A23423423%0D%0A4%0D%0A234%0D%0A23423%0D%0A\n	invalid input format.\n	20/03/2018	11:01:18	127.0.0.1
+245	jyoti123	SumOfDigits	1232%0D%0A23213%0D%0A23%0D%0A23%0D%0A23%0D%0A132%0D%0A323%0D%0A13%0D%0A2132%0D%0A23\n	invalid input\n	20/03/2018	11:01:45	127.0.0.1
+246	jyoti123	SumOfDigits	123\n123\n23\n23\n23\n3\n232\n323\n2321\n3123\n23\n	6\n6\n5\n5\n5\n3\n7\n8\n8\n9\n5\n	20/03/2018	11:01:55	127.0.0.1
+247	jyoti123	HiddenDigits	213123\n213312\n13123\n	213123\n213312\n13123\n	20/03/2018	12:04:15	127.0.0.1
+248	jyoti123	SumOfDigits	323423\n3423423\n	17\n21\n	20/03/2018	12:20:37	127.0.0.1
+249	jyoti123	SumOfDigits	323423\n3423423\n	17\n21\n	20/03/2018	12:21:49	127.0.0.1
+250	jyoti123	SumOfDigits	12312\n213123\n	9\n12\n	20/03/2018	12:21:56	127.0.0.1
+251	jyoti123	SumOfDigits	21312\n	9\n	20/03/2018	12:23:01	127.0.0.1
+252	jyoti123	SumOfDigits	21312\n	9\n	20/03/2018	12:23:43	127.0.0.1
+253	jyoti123	SumOfDigits	123\n1231\n	6\n7\n	20/03/2018	12:23:51	127.0.0.1
+\.
+
+
+--
+-- Name: program_histories_slno_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('program_histories_slno_seq', 253, true);
+
+
+--
+-- Data for Name: programhistory; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY programhistory (id, userid, "time", date, ip, input, output) FROM stdin;
+1	7	11:24:55	2018/02/27	127.0.1.1	23\r\n496	519
+2	7	14:55:05	2018/02/27	127.0.1.1	23\r\n496	519
+3	7	14:55:50	2018/02/27	127.0.1.1	23\r\n496	519
+4	7	15:21:08	2018/02/27	127.0.1.1	abcdefghik\r\nXa},A#5N}{xOBwYBHIlH,#W\r\n(ABW>"yy"^M{X-K}q\r\n6240488	01234567805NONE6240488
+5	7	15:23:07	2018/02/27	127.0.1.1	23\r\n496	519
+6	7	15:35:10	2018/02/27	127.0.1.1	23\r\n496	519
+7	0	16:17:54	2018/02/27	127.0.1.1	23\r\n496	519
+8	0	16:19:51	2018/02/27	127.0.1.1	23\r\n496	
+9	7	16:20:22	2018/02/27	127.0.1.1	23\r\n496	519
+10	7	16:20:29	2018/02/27	127.0.1.1	23\r\n496	519
+11	7	16:20:40	2018/02/27	127.0.1.1	23\r\n496	519
+12	0	16:23:41	2018/02/27	127.0.1.1	23\r\n496	
+13	0	16:23:53	2018/02/27	127.0.1.1	23\r\n496	
+14	7	16:24:16	2018/02/27	127.0.1.1	23\r\n496	519
+15	7	16:24:23	2018/02/27	127.0.1.1	23\r\n496	519
+16	7	16:26:51	2018/02/27	127.0.1.1	23\r\n496	519
+17	7	16:26:57	2018/02/27	127.0.1.1	23\r\n496	519
+18	7	16:30:24	2018/02/27	127.0.1.1	23\r\n496	519
+19	7	16:30:33	2018/02/27	127.0.1.1	23\r\n496	519
+20	7	16:31:43	2018/02/27	127.0.1.1	23\r\n496	519
+21	7	16:31:50	2018/02/27	127.0.1.1	23\r\n496	519
+22	7	16:33:51	2018/02/27	127.0.1.1	23\r\n496	519
+23	7	16:33:58	2018/02/27	127.0.1.1	23\r\n496	519
+24	0	16:36:05	2018/02/27	127.0.1.1	23\r\n496	519
+25	0	16:36:25	2018/02/27	127.0.1.1	23\r\n496	519
+26	7	16:43:18	2018/02/27	127.0.1.1	23\r\n496	5\n19\n
+27	jyoti	11:32:07	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+28	jyoti	11:33:53	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+29	jyoti	12:31:59	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+30	jyoti	12:32:06	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+31	jyoti	12:32:26	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+32	jyoti	12:43:05	2018/02/28	127.0.1.1	23\r\n496	
+33	jyoti	12:44:13	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+34	jyoti	12:44:20	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+35	null	12:47:09	2018/02/28	127.0.1.1	23\r\n496	
+36	jyoti	12:47:34	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+37	jyoti	12:47:39	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+38	jyoti	12:49:12	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+39	jyoti	12:49:18	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+40	null	12:52:32	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+41	null	12:52:47	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+42	jyoti	12:54:36	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+43	jyoti	12:54:42	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+44	jyoti	12:56:26	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+45	jyoti	12:56:36	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+46	jyoti	13:17:07	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+47	jyoti	13:41:42	2018/02/28	127.0.1.1	23\r\n496	519
+48	null	13:43:36	2018/02/28	127.0.1.1	23\r\n496	519
+49	null	13:43:45	2018/02/28	127.0.1.1	23\r\n496	519
+50	jyoti	13:53:17	2018/02/28	127.0.1.1	23\r\n496	519
+51	null	13:59:24	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+52	null	14:00:41	2018/02/28	127.0.1.1	23\r\n496	
+53	null	14:01:04	2018/02/28	127.0.1.1	23\r\n496	5\n19\n
+54	null	14:06:02	2018/02/28	127.0.1.1	23\r\n496	
+55	jyoti	14:06:48	2018/02/28	127.0.1.1	23\r\n496	
+56	jyoti	14:07:45	2018/02/28	127.0.1.1	23\r\n496	
+57	jyoti	14:07:51	2018/02/28	127.0.1.1	23\r\n496	
+58	null	16:30:10	2018/02/28	127.0.1.1	23\r\n496	
+59	null	16:33:36	2018/02/28	127.0.1.1	23\r\n496	
+60	null	16:36:09	2018/02/28	127.0.1.1	23\r\n496	
+61	null	16:37:43	2018/02/28	127.0.1.1	23\r\n496	
+62	null	16:38:02	2018/02/28	127.0.1.1	23\r\n496	
+63	null	16:40:29	2018/02/28	127.0.1.1	23\r\n496	
+64	null	16:42:04	2018/02/28	127.0.1.1	23\r\n496	
+65	null	16:46:38	2018/02/28	127.0.1.1	23\r\n496	
+66	null	16:46:43	2018/02/28	127.0.1.1	23\r\n496	
+67	jyotivakare	16:58:52	2018/02/28	127.0.1.1	23\r\n496	
+68	null	17:02:02	2018/02/28	127.0.1.1	23\r\n496	
+69	null	17:02:06	2018/02/28	127.0.1.1	23\r\n496	
+70	jyotivakare	17:02:31	2018/02/28	127.0.1.1	23\r\n496	
+71	jyotivakare	17:03:49	2018/02/28	127.0.1.1	23\r\n496	
+72	jyotivakare	17:04:45	2018/02/28	127.0.1.1	23\r\n496	
+73	jyotivakare	17:05:43	2018/02/28	127.0.1.1	23\r\n496	
+74	null	17:07:14	2018/02/28	127.0.1.1	23\r\n496	
+75	jyotivakare	17:07:41	2018/02/28	127.0.1.1	23\r\n496	
+76	jyotivakare	17:09:54	2018/02/28	127.0.1.1	12	
+77	jyotivakare	17:09:57	2018/02/28	127.0.1.1	12	
+78	null	17:10:34	2018/02/28	127.0.1.1	some line with text	
+79	jyotivakare	17:11:11	2018/02/28	127.0.1.1	23\r\n496	
+80	jyotivakare	17:13:03	2018/02/28	127.0.1.1	23\r\n496	
+81	jyotivakare	17:19:01	2018/02/28	127.0.1.1	12	
+82	jyotivakare	17:19:09	2018/02/28	127.0.1.1	12	
+83	jyotivakare	17:19:15	2018/02/28	127.0.1.1	12	
+84	jyotivakare	17:19:32	2018/02/28	127.0.1.1	12\r\n24	
+\.
+
+
+--
+-- Name: programhistory_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('programhistory_id_seq', 84, true);
+
+
+--
+-- Data for Name: programs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY programs (sl_no, program_name, action, authorid) FROM stdin;
+25	String Rotation	<b>STRING ROTATION</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n    You are given two strings. Determine if the second string is a rotation of the first string.\n\n<b>INPUT SAMPLE:</b>\n\tYour program should accept as its first argument a path to a filename. Each line in this file contains two comma separated strings. \n\n    E.g.\n    Hello,lloHe\n    Basefont,tBasefon\n\n<b>OUTPUT SAMPLE:</b>\n    Print out True/False if the second string is a rotation of the first.\n\n    E.g.\n    True\n    True\n	1
+1	Trick Or Treat	<b>TRICK OR TREAT</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n    Everyone knows what Halloween is and how children love it. Children in costumes travel from house to house asking for treats with a phrase "Trick or treat". After\n    that, they divide the treats equally among all. This year, they collected tons of candies, and need your help to share everything equally. You know that children   receive different number of candies depending on their costume: vampire gets 3 candies from one house, zombie - 4 candies, and witch - 5 candies. That is, three children in three different costumes get 3+4+5=12 candies from one house.\n\n<b>INPUT SAMPLE:</b>\n\tThe first argument is a path to a file. Each line includes a test case with number of vampires, zombies, witches, and houses that they visited.\n    For example:\n    Vampires: 1, Zombies: 1, Witches: 1, Houses: 1\n    Vampires: 3, Zombies: 2, Witches: 1, Houses: 10\n\n<b>OUTPUT SAMPLE:</b>\n    You need to print number of candies that each child will get. If the number is not integer, round it to the lower: for example, if the resulting number is 13.666, round it to 13.\n\n    For example:\n    4\n    36\n\n<b>CONSTRAINTS:</b>\n    Number of vampires, zombies, witches, and houses can be from 0 to 100.\n    If the final number of candies is not integer, round it to the lower.\n    The number of test cases is 40.\n	1
+2	Sum Of Digits	<b>Sum of Digits</b>\n\n<b>Challenge Description:</b>\n    Given a positive integer, find the sum of its constituent digits.\n\n<b>Input sample:</b>\n    The first argument will be a path to a filename containing positive integers, one per line. \n    E.g. \n    23\n    496\n\n<b>Output sample:</b>\n    Print to stdout, the sum of the numbers that make up the integer, one per line. \n    E.g. \n    5\n    19\n	1
+3	Hidden Digits	<b>HIDDEN DIGITS</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n    In this challenge youre given a random string containing hidden and visible digits. The digits are hidden behind lower case latin letters as follows: 0 is behind   "a", 1 is behind " b " etc., 9 is behind "j". Any other symbol in the string means nothing and has to be ignored. So the challenge is to find all visible and hidden digits in the string  and print them out in order of their appearance.\n\n<b>INPUT SAMPLE:</b>\n\tYour program should accept as its first argument a path to a filename. Each line in this file contains a string. You may assume that there will be no white spaces inside the string. E.g.\n\n    abcdefghik\n    Xa},A#5N}{xOBwYBHIlH,#W\n    (ABW>"yy"^M{X-K}q\n    6240488\n\n<b>OUTPUT SAMPLE:</b>\n\tFor each test case print out all visible and hidden digits in order of their appearance. Print out NONE in case there is no digits in the string. E.g.\n\n    012345678\n    05\n    NONE\n    6240488\n	1
+4	Longest Words	<b>LONGEST WORD</b>\n\n<b>Challenge Description:</b>\n\tIn this challenge you need to find the longest word in a sentence. If the sentence has more than one word of the same length you should pick the first one. \n\n<b>Input sample:</b>\n\tYour program should accept as its first argument a path to a filename. Input example is the following \n    Each line has one or more words. Each word is separated by space char. \n    some line with text\n    another line\n\n<b>Output sample:</b>\n    Print the longest word in the following way. \n    some\n    another\n	1
+5	Reverse Words	<b>REVERSE WORDS</b>\n\n<b>Challenge Description:</b>\n    Write a program which reverses the words in an input sentence.\n\n<b>Input sample:</b>\n\tThe first argument is a file that contains multiple sentences, one per line. Empty lines are also possible. \n    For example:\n    Hello World\n    Hello CodeEval\n\n<b>Output sample:</b>\n\tPrint to stdout each sentence with the reversed words in it, one per line. Empty lines in the input should be ignored. Ensure that there are no trailing empty spaces in each line you print. \n    For example: \n    World Hello\n    CodeEval Hello\n	1
+6	Split TheNumber	<b>Split The Number</b>\n\n<b>Challenge Description:</b>\n\tYou are given a number N and a pattern. The pattern consists of lowercase latin letters and one operation "+" or "-". \n    The challenge is to split the number and evaluate it according to this pattern e.g. \n    1232 ab+cd -> a:1, b:2, c:3, d:2 -> 12+32 -> 44 \n\n<b>Input sample:</b>\n\tYour program should accept as its first argument a path to a filename. Each line of the file is a test case, containing the number and the pattern separated by a single whitespace. \n\n    E.g. \n      3413289830 a-bcdefghij\n      776 a+bc\n      12345 a+bcde\n      1232 ab+cd\n      90602 a+bcde\n\n<b>Output sample:</b>\n    For each test case print out the result of pattern evaluation. \n\n    E.g. \n      -413289827\n      83\n      2346\n      44\n      611\n\n<b>Constraints: </b>\n    N is in range [100, 1000000000] \n	1
+7	Fizz Buzz	<b>FIZZ BUZZ</b>\n\n<b>Challenge Description:</b>\n\t    Players generally sit in a circle. The first player says the number "1", and each player says next number in turn. However, any number divisible by X (for example, three) is replaced by the word fizz, and any divisible by Y (for example, five) by the word buzz. Numbers divisible by both become fizz buzz. A player who hesitates, or makes a mistake is eliminated from the game. Write a program that prints out the final series of numbers where those divisible by X, Y and both are replaced by "F" for fizz, "B" for buzz and "FB" for fizz buzz. \n\n<b>Input sample:</b>\n\tYour program should accept a file as its first argument. The file contains multiple separated lines; each line contains\n     3 numbers that are space delimited. The first number is the first divider (X), the second number is the second divider \n    (Y), and the third number is how far you should count (N). You may assume that the input file is formatted correctly \n    and the numbers are valid positive integers. \n    For example: \n      \t  3 5 10\n     \t   2 7 15\n\n<b>Output sample:</b>\n\tPrint out the series 1 through N replacing numbers divisible by X with "F", numbers divisible by Y with "B" and \n    numbers divisible by both with "FB". Since the input file contains multiple sets of values, your output should print \n    out one line per set. Ensure that there are no trailing empty spaces in each line you print. \n\t    1 2 F 4 B F 7 8 F B\n\t    1 F 3 F 5 F B F 9 F 11 F 13 FB 15\n\n<b>Constraints:</b>\n    The number of test cases ? 20 \n    "X" is in range [1, 20] \n    "Y" is in range [1, 20] \n    "N" is in range [21, 100] \n	1
+8	Right Most Char	<b>RIGHTMOST CHAR</b>\n\n<b>Challenge Description:</b>\n\tYou are given a string "S" and a character "t". Print out the position of the rightmost occurrence of "t" (case matters) in "S" or -1 if there is none. The position to be printed out is zero based.\n\n<b>Input sample:</b>\n\tThe first argument will ba a path to a filename, containing a string and a character, comma delimited, one per line. Ignore all empty lines in the input file. E.g. \n      Hello World,r\n    Hello CodeEval,E\n\n<b>Output sample:</b>\n\tPrint out the zero based position of the character "t" in string "S", one per line. Do NOT print out empty lines between your output. \n    E.g. \n      8\n      10\n	1
+17	Stack Interface	<b>STACK IMPLEMENTATION</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tWrite a program which implements a stack interface for integers. The interface should have "push" and "pop" functions. Your task is to "push" a series of integers and then "pop" and print every alternate integer.\n\n<b>INPUT SAMPLE:</b>\n    Your program should accept a file as its first argument. The file contains a series of space delimited integers, one per line.\n\n    For example:\n    1 2 3 4\n    10 -2 3 4\n\n<b>OUTPUT SAMPLE:</b>\n    Print to stdout every alternate space delimited integer, one per line.\n\n    For example:\n    4 2\n    4 -2\n	1
+9	Roller Coaster	<b>ROLLER COASTER</b>\n\n<b>Challenge Description: </b>\n\tYou are given a piece of text. Your job is to write a program that sets the case of text characters according to the following rules: \n    The first letter of the line should be in uppercase. \n    The next letter should be in lowercase. \n    The next letter should be in uppercase, and so on. \n    Any characters, except for the letters, are ignored during determination of letter case. \n\n<b>Input sample:</b>\n\tThe first argument will be a path to a filename containing sentences, one per line. You can assume that all characters are from the English language. \n    For example: \n\t    To be, or not to be: that is the question.\n\t    Whether tis nobler in the mind to suffer.\n\t    The slings and arrows of outrageous fortune.\n\t    Or to take arms against a sea of troubles.\n\t    And by opposing end them, to die: to sleep.\n\n<b>Output sample:</b>\n    Print to stdout the RoLlErCoAsTeR case version of the string.\n    For example: \n\t    To Be, Or NoT tO bE: tHaT iS tHe QuEsTiOn.\n\t    WhEtHeR tIs NoBlEr In ThE mInD tO sUfFeR.\n\t    ThE sLiNgS aNd ArRoWs Of OuTrAgEoUs FoRtUnE.\n\t    Or To TaKe ArMs AgAiNsT a SeA oF tRoUbLeS.\n\t    AnD bY oPpOsInG eNd ThEm, To DiE: tO sLeEp.\n\n<b>Constraints:</b>\n    The length of each piece of text does not exceed 1000 characters. \n	1
+10	Step Wise Word	<b>Stepwise word</b>\n\n<b>Challenge Description:</b>\n    Print the longest word in a stepwise manner. \n\n<b>Input sample:</b>\n    The first argument is a path to a file. Each line contains a test case with a list of words that have different or the same length. \n    For example: \n\t    cat dog hello\n\t    stop football play\n\t    music is my life\n\n<b>Output sample:</b>\n    Find the longest word in each line and print it in one line in a stepwise manner. Separate each new step with a space. If there are several words of the same length and they are the longest, then print the first word from the list. \n\t    h *e **l ***l ****o\n\t    f *o **o ***t ****b *****a ******l *******l\n\t    m *u **s ***i ****c\n\n<b>Constraints:</b>\n    The word length is from 1 to 10 characters. \n    The number of words in a line is from 5 to 15. \n    If there are several words of the same length and they are the longest, then print the first word from the list. \n    The number of test cases is 40. \n	1
+11	Pangrams	<b>PANGRAMS</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tThe sentence "A quick brown fox jumps over the lazy dog" contains every single letter in the alphabet. Such sentences are called pangrams. You are to write a program, which takes a sentence, and returns all the letters it is missing (which prevent it from being a pangram). You should ignore the case of the letters in sentence, and your return should be all lower case letters, in alphabetical order. You should also ignore all non US-ASCII characters. In case the input sentence is already a pangram, print out the string NULL\n\n<b>INPUT SAMPLE:</b>\n\tYour program should accept as its first argument a path to a filename. This file will contain several text strings, one per line. \n    E.g.\n    A quick brown fox jumps over the lazy dog\n    A slow yellow fox crawls under the proactive dog\n\n<b>OUTPUT SAMPLE:</b>\n\tPrint out all the letters each string is missing in lowercase, alphabetical order . \n    E.g.\n    NULL\n    bjkmqz\n	1
+12	String Search	<b>STRING SEARCHING</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tYou are given two strings. Determine if the second string is a substring of the first (Do NOT use any substr type library function). The second string may contain an asterisk(*) which should be treated as a regular expression i.e. matches zero or more characters. The asterisk can be escaped by a \\ char in which case it should be interpreted as a regular "*" character. To summarize: the strings can contain alphabets, numbers, * and \\ characters.\n\n<b>INPUT SAMPLE:</b>\n\tYour program should accept as its first argument a path to a filename. The input file contains two comma delimited strings per line. \n\n    E.g.\n    Hello,ell\n    This is good, is\n    CodeEval,C*Eval\n    Old,Young\n\n<b>OUTPUT SAMPLE:</b>\n\tIf the second string is indeed a substring of the first, print out a "true"(lowercase), else print out a "false"(lowercase), one per line. \n\n    E.g.\n    true\n    true\n    true\n    false\n	1
+13	Distinct Subsequence	<b>DISTINCT SUBSEQUENCES</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tA subsequence of a given sequence S consists of S with zero or more elements deleted. Formally, a sequence Z = z1z2..zk is a subsequence of X = x1x2...xm, if there exists a strictly increasing sequence of indicies of X such that for all j=1,2,...k we have Xij = Zj. \nE.g. Z=bcdb is a subsequence of X=abcbdab with corresponding index sequence <2,3,5,7>\n\n<b>INPUT SAMPLE:</b>\n\tYour program should accept as its first argument a path to a filename. Each line in this file contains two comma separated strings. The first is the sequence X and the second is the subsequence Z. E.g.\n    1)  babgbag,bag\n    2)  rabbbit,rabbit\n\n<b>OUTPUT SAMPLE:</b>\n\tPrint out the number of distinct occurrences of Z in X as a subsequence E.g.\n    1) 5\n    2) 3\n	1
+14	Swap Case	<b>SWAP CASE</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tWrite a program which swaps letters case in a sentence. All non-letter characters should remain the same.\n\n<b>INPUT SAMPLE:</b>\n\tYour program should accept as its first argument a path to a filename. \n    Input example is the following:\n\n    Hello world!\n    JavaScript language 1.8\n    A letter\n\n<b>OUTPUT SAMPLE:</b>\n    Print results in the following way.\n\n    hELLO WORLD!\n    jAVAsCRIPT LANGUAGE 1.8\n    a LETTER\n	1
+15	Read More	<b>READ MORE</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tYou are given a text. Write a program which outputs its lines according to the following rules:\n    If line length is <= 55 characters, print it without any changes.\n    If the line length is > 55 characters, change it as follows:\n    Trim the line to 40 characters.\n    If there are spaces " " in the resulting string, trim it once again to the last space (the space should be trimmed too).\n    Add a string "... <Read More>" to the end of the resulting string and print it.\n\n<b>INPUT SAMPLE:</b>\n    The first argument is a file. The file contains a text.\n\nFor example:\n    1  Tom exhibited.\n    2  Amy Lawrence was proud and glad, and she tried to make Tom see it in her face - but he wouldnt look.\n    3  Tom was tugging at a button-hole and looking sheepish.\n    4  Two thousand verses is a great many - very, very great many.\n    5  Tom mouth watered for the apple, but he stuck to his work.\n\n<b>OUTPUT SAMPLE:</b>\n    Print to stdout the text lines with their length limited according to the rules described above.\n	1
+16	Shortest Repeatations	<b>SHORTEST REPETITION</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n    Write a program to determine the shortest repetition in a string. \n\t    A string is said to have period p if it can be formed by concatenating one or more repetitions of another string of length p. For example, the string "xyzxyzxyzxyz" has period 3, since it is formed by 4 repetitions of the string "xyz". It also has periods 6 (two repetitions of "xyzxyz") and 12 \n(one repetition of "xyzxyzxyzxyz").\n\n<b>INPUT SAMPLE:</b>\n\tYour program should accept as its first argument a path to a filename. Each line will contain a string of up to 80 non-blank characters. \n    E.g.\n    abcabcabcabc\n    bcbcbcbcbcbcbcbcbcbcbcbcbcbc\n    dddddddddddddddddddd\n    adcdefg\n\n<b>OUTPUT SAMPLE:</b>\n    Print out the smallest period of the input string. \n    E.g.\n    3\n    2\n    1\n    7\n	1
+18	Consecutive Prime	<b>CONSECUTIVE PRIMES:</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tWrite a program that takes L and R as input and displays the number of prime numbers that lie between L and R (L and R inclusive) and can be represented as sum of two consecutive prime numbers + 1. \n\n\tYour program should accept a path to a file as its first argument that contains <= 40 number of lines. Each line is a test case represented by a pair of integers.\n\n<b>Example:</b>\n\nCase 1:\n\n\tFor the input provided as follows:\n\n\t1 20\n\n\tOutput of the program will be:\n\n\t2\n\n\tExplanation\n\n\t13 is a prime number which can be expressed like 5+7+1.\n\t19 is a prime number which can be expressed like 7+11+1.\n\tSo output is 2.\n\tNote that 5 and 7 are consecutive primes. Similarly 7 and 11 are consecutive primes.\n\nCase 2:\n\n\tFor the input provided as follows:\n\n\t1 10\n\n\tOutput of the program will be:\n\n\t0\n\n\tExplanation\n\n\tNo prime numbers lie between 1 and 10 that can be represented as sum of two consecutive prime numbers + 1, hence 0 is displayed.\n	1
+19	Email Validation	<b>EMAIL VALIDATION</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tYou are given several strings that may/may not be valid emails. You should write a regular expression that determines if the email id is a valid email id or not. You may assume all characters are from the english language.\n\n<b>INPUT SAMPLE:</b>\n\tYour program should accept as its first argument a filename. This file will contain several text strings, one per line. Ignore all empty lines. \n    E.g. \n    foo@bar.com\n    this is not an email id\n    admin#codeeval.com\n    good123@bad.com\n\n<b>OUTPUT SAMPLE:</b>\n\tPrint out "true" (all lowercase) if the string is a valid email. Else print out "false" (all lowercase). E.g.\n    true\n    false\n    false\n    true\n	1
+20	Justify The Text	<b>JUSTIFY THE TEXT</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tWrite a program that reformats the text into lines of 80 symbols by stretching the text to full line width by adding extra spaces.Longer series of spaces should go first. \n    For example:\n    if you need to add just one extra space, add it between the first and the second wordif there are 4 words in a line, and you need 10 spaces to stretch the text up to 80 symbols, add 4 spaces between the first and the second word, 3 spaces between the second and the third word, and 3 spaces between the third and the fourth word. The last line of the paragraph remains unchanged.\n\n<b>INPUT SAMPLE:</b>\n\tThe first argument is a filename. The input file contains a text.\n    For example:\n\n    Hello, World!\n    The precise 50-digits value of Pi is 3.1415926535897932384626433832795028841971693993\n    7510.\n    But he who would be a great man ought to regard, not himself or his interests, but \n    what is just, whether the just act be his own or that of another. Next as to \n    habitations. Such is the tradition.\n\n<b>OUTPUT SAMPLE:</b>\n\tPrint to stdout the text, reformatted into lines of 80 symbols by stretching the text to the full line width by adding extra spaces.\n\n    For example:\n    Hello, World!\n    The         precise         50-digits        value        of        Pi        is\n    3.14159265358979323846264338327950288419716939937510.\n    But  he  who would be a great man ought to regard, not himself or his interests,\n    but what is just, whether the just act be his own or that of another. Next as to\n    habitations. Such is the tradition.\n	1
+21	Robot Movements	���<b>ROBOT MOVEMENTS</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tA robot is located in the upper-left corner of a 4��4 grid. The robot can move either up, down, left, or right, but cannot go to the same location twice. The robot is trying to reach the lower-right corner of the grid. Your task is to find out the number of unique ways to reach the destination.\n\n<b>INPUT SAMPLE:</b>\n    There is no input for this program.\n\n<b>OUTPUT SAMPLE:</b>\n\tPrint out the number of unique ways for the robot to reach its destination. The number should be printed out as an integer ���0.\n	1
+22	Egg Crack	<b>CRACKING EGGS</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tYou have a N story building and K eggs. They are especially strong eggs so they are able to withstand impact up to a certain number of floors.\n\n    Your goal is to identify the number of drops you need make to determine number of floors it can withstand.\n\n<b>INPUT SAMPLE:</b>\n\tThe first argument will be a path to a filename containing a space separated list of 2 integers, first one is number eggs, second one - number of floors. E.g.\n\n    2 100\n\n<b>OUTPUT SAMPLE:</b>\n\tThe output contains one integer - the worst worst case upper bound on the number of drops you must make to determine this floor.\n\n    14\n	1
+23	Advance Calculator	<b>ADVANCED CALCULATOR</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tThe goal of this challenge is to create an advanced calculator. \n    The following operations should be supported with their order (operator precedence): \n        Pi        Pi number\n        e         Eulers number\n        sqrt()    Square root\n        cos()     Cosine (using radians as an argument)\n        sin()     Sine (using radians as an argument)\n        tan()     Tangent (using radians as an argument)\n        lg()      Decimal logarithm\n        ln()      Natural logarithm\n    1   ()        Brackets\n    2   ||        Absolute value, e.g. |-5 - 10|\n    3   !         Factorial\n    4   -         Unary minus\n    5   ^         Exponent\n    6   mod       Modulus divide, e.g. 5 mod 2 = 1 (only integers will be supplied here)\n    7   *, /      Multiply, Divide (left-to-right precedence)\n    8   +, -      Add, Subtract (left-to-right precedence)\n\n<b>INPUT SAMPLE:</b>\n\tYour program should accept as its first argument a path to a filename. The input file contains several lines.Each line is one test case. Each line contains mathematical expression. E.g.\n\n    250*14.3\n    3^6 / 117\n    (2.16 - 48.34)^-1\n    (59 - 15 + 3*6)/21\n    lg(10) + ln(e)\n    15*5 mod 2\n\n<b>OUTPUT SAMPLE:</b>\n\t\n    For each set of input produce a single line of output which is the result of calculation.\n\n    3575\n    6.23077\n    -0.02165\n    2.95238\n    2\n    15\n\n<b>Note:</b> Dont use any kind of eval function.\n\n<b>CONSTRAINTS: </b>\n\tEach number in input expression is greater than -20,000 and less than 20,000. \n    Each output number is greater than -20,000 and less than 20,000. \n    If output number is a float number it should be rounded to the 5th digit after the dot. \n    E.g 14.132646 gets 14.13265, 14.132644 gets 14.13264, 14.132645 gets 14.13265. \n\n    If output number has less than 5 digits after the dot you dont need to add zeros. \n    E.g. you need to print 16.34 (and not 16.34000) in case the answer is 16.34. \n    And you need to print 16 (and not 16.00000) in case the answer is 16.\n	1
+30	Reverse And Add	<b>REVERSE AND ADD</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tChoose a number, reverse its digits and add it to the original. If the sum is not a palindrome (which means, it is not the same number from left to right and right to left), repeat this procedure.\n\n    For example:\n    195 (initial number) + 591 (reverse of initial number) = 786\n\n    786 + 687 = 1473\n    1473 + 3741 = 5214\n    5214 + 4125 = 9339 (palindrome)\n\t    In this particular case the palindrome 9339 appeared after the 4th addition. This method leads to palindromes in a few step for almost all of the integers. But there are interesting exceptions. 196 is the first number for which no palindrome has been found. It is not proven though, that there is no such a palindrome.\n\n<b>INPUT SAMPLE:</b>\n\tYour program should accept as its first argument a path to a filename. Each line in this file is one test case. Each test case will contain an integer n < 10,000. Assume each test case will always have an answer and that it is computable with less than 100 iterations (additions).\n\n<b>OUTPUT SAMPLE:</b>\n\tFor each line of input, generate a line of output which is the number of iterations (additions) to compute the palindrome and the resulting palindrome. (they should be on one line and separated by a single space character).\n\n    For example:\n        4 9339\n	1
+24	Working Experience	���<b>WORKING EXPERIENCE</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tYou are building a new social platform and want to store user work experience. You have decided to calculate the total experience of each user in years based on the time periods that they provided. Using this approach, you need to be sure that you are taking into account the overlapping time periods in order to retrieve the actual work experience in years.\n\n    For example:\n    Jan 2010-Dec 2010\n    Jan 2010-Dec 2010\n    Two jobs with 12 months of experience each, but actual work experience is 1 year because of the overlapping time \n    periods. The task is to calculate the actual work experience based on the list of time intervals.\n\n<b>INPUT SAMPLE:</b>\n\tYour program should accept a path to a filename as its first argument. Each line of the file contains a list of time periods separated by a semicolon and a single space. Each time period is represented as the begin date and the end date. Each date consists of a month as an abbreviated name and a year with century as a decimal number separated by a single space. The begin date and the end date are separated by a hyphen.\n\n    For example:\n    Feb 2004-Dec 2009; Sep 2004-Jul 2008\n    Aug 2013-Mar 2014; Apr 2013-Aug 2013; Jun 2014-Aug 2015; Apr 2003-Nov 2004; Apr 2014-Jan 2015\n    Mar 2003-Jul 2003; Nov 2003-Jan 2004; Apr 1999-Nov 1999\n    Apr 1992-Dec 1993; Feb 1996-Sep 1997; Jan 2002-Jun 2002; Sep 2003-Apr 2004; Feb 2010-Nov 2011\n    Feb 2004-May 2004; Jun 2004-Jul 2004\n\n<b>OUTPUT SAMPLE:</b>\n\tPrint out the actual work experience in years for each test case.\n\n    For example:\n    5\n    4\n    1\n    6\n    0\n\n<b>CONSTRAINTS:</b>\n    <b>-</b>The number of lines in a file is in a range from 20 to 40.\n    <b>-</b>The dates are in a range from Jan 1990 to Dec 2020.\n    <b>-</b>The end date is greater than the begin date.\n    <b>-</b>The begin date is the first day of a given month, and the end date is the last day of a given month.\n	1
+26	Reverse Groups	<b>REVERSE GROUPS</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tGiven a list of numbers and a positive integer k, reverse the elements of the list, k items at a time. If the number of elements is not a multiple of k, then the remaining items in the end should be left as is.\n\n<b>INPUT SAMPLE:</b>\n\tYour program should accept as its first argument a path to a filename. Each line in this file contains a list of numbers and the number k, separated by a semicolon. The list of numbers are comma delimited. \n    E.g.\n    1,2,3,4,5;2\n    1,2,3,4,5;3\n\n<b>OUTPUT SAMPLE:</b>\n    Print out the new comma separated list of numbers obtained after reversing. \n    E.g.\n    2,1,4,3,5\n    3,2,1,4,5\n	1
+27	Text Dollar	<b>TEXT DOLLAR</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n<b>Credits:</b>\n    This challenge has been authored by Terence Rudkin \n\tYou are given a positive integer number. This represents the sales made that day in your department store. The payables department however, needs this printed out in english. \n<b>NOTE:</b> The correct spelling of 40 is Forty. (NOT Fourty)\n\n<b>INPUT SAMPLE:</b>\n\tYour program should accept as its first argument a path to a filename.The input file contains several lines. Each line is one test case. Each line contains a positive integer. \n\n    E.g.\n    3\n    10\n    21\n    466\n    1234\n\n<b>OUTPUT SAMPLE:</b>\n\tFor each set of input produce a single line of output which is the english textual representation of that integer. The output should be unspaced and in Camelcase. Always assume plural quantities. You can also assume that the numbers are < 1000000000 (1 billion). In case of ambiguities e.g. 2200 could be TwoThousandTwoHundredDollars or TwentyTwoHundredDollars, always choose the representation with the larger base i.e. TwoThousandTwoHundredDollars. For the examples shown above, the answer would be:\n\n    ThreeDollars\n    TenDollars\n    TwentyOneDollars\n    FourHundredSixtySixDollars\n    OneThousandTwoHundredThirtyFourDollars\n	1
+28	Text To Number	<b>TEXT TO NUMBER</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n\tYou have a sting which contains a number represented as English text. Your task is to translate these numbers into their integer representation. The numbers can range from negative 999,999,999 to positive 999,999,999. The following is an exhaustive list of English words that your program must account for:\n    negative,zero, one, two, three, four, five, six, seven, eight, nine,ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen,\n    seventeen, eighteen, nineteen,twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety,hundred,thousand,million\n\n<b>INPUT SAMPLE:</b>\n    Your program should accept as its first argument a path to a filename. \n    Input example is the following\n\n    fifteen\n    negative six hundred thirty eight\n    zero\n    two million one hundred seven\n\n    <b>-</b> Negative numbers will be preceded by the word negative. \n    <b>-</b> The word "hundred" is not used when "thousand" could be. E.g. 1500 is written "one thousand five hundred", not \n    "fifteen hundred".\n\n<b>OUTPUT SAMPLE:</b>\n    Print results in the following way.\n\n    15\n    -638\n    0\n    2000107\n	1
+29	Compressed Sequence	<b>COMPRESSED SEQUENCE</b>\n\n<b>CHALLENGE DESCRIPTION:</b>\n    Assume that someone dictates you a sequence of numbers, and you need to write it down. For brevity, he dictates it as follows: first he dictates the number of\n    consecutive identical numbers, and then - the number itself.\n    For example:\n    The sequence below\n    1 1 3 3 3 2 2 2 2 14 14 14 11 11 11 2\n    is dictated as follows:\n    two times one, three times three, four times two, three times fourteen, three times eleven, one time two\n    and you have to write down the sequence\n    2 1 3 3 4 2 3 14 3 11 1 2\n    Your task is to write a program that compresses a given sequence using this approach.\n\n<b>INPUT SAMPLE:</b>\n    Your program should accept a path to a file as its first argument that contains T number of lines. Each line is a test case represented by a sequence of integers   with the length L, where each integer is N separated by a space.\n\n    40 40 40 40 29 29 29 29 29 29 29 29 57 57 92 92 92 92 92 86 86 86 86 86 86 86 86 86 86\n    73 73 73 73 41 41 41 41 41 41 41 41 41 41\n    1 1 3 3 3 2 2 2 2 14 14 14 11 11 11 2\n    7\n\n<b>OUTPUT SAMPLE:</b>\n\tFor each test case, print out a compressed sequence of numbers separated by a single space, one per line.\n\n    For example:\n\n    4 40 - 8 29 - 2 57 - 5 92 - 10 86\n    4 73 - 10 41\n    2 1 - 3 3 - 4 2 - 3 14 - 3 11 - 1 2\n    1 7\n\n<b>CONSTRAINTS:</b>\n\n    T is in a range from 20 to 50.\n    N is in a range from 0 to 99.\n    L is in a range from 1 to 400.\n	1
+33	23213	\t\t23123	6
+\.
+
+
+--
+-- Name: programs_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('programs_seq', 51, true);
+
+
+--
+-- Name: programs_sl_no_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('programs_sl_no_seq', 33, true);
+
+
+--
+-- Name: programs_slno_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('programs_slno_seq', 1, false);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY users (username, email, password, address, id) FROM stdin;
+vijay	vijay@gmail.com	1234	sdfewfrfer	2
+bhagwan	bhagwan@mahaswami.com	test1234	banglore	3
+jyoti1234	jyotivakare3333@gmail.com	123	sddsdf	4
+jyoti1232	jyotivakare333333@gmail.com	1234	sddfsdf	5
+jyoti123	jyotivakare33@gmail.com	1234	12341212	1
+indu	indu@gmail.com	1234	bangalore	6
+shankar	shankarsutar777@gmail.com	shankar	bangalore	7
+subbu	subbu@gmail.com	1234	ddsfdf	8
+sdadsas	a@gmail.com	123	sdasda	9
+bhag@gmail.com	bhag@gmail.com	test1234	rtegrsdfzc	11
+				12
+adsasd	asd@gmail.com	1234	12321	14
+sadas	asds@gmail.com	1234	Krasnoyarsk Krai, Russia, 663246	15
+fgdgf	dgf@gmail.com	1234	Ulugqat, Kizilsu, Xinjiang, China	16
+afafadsfasfffff	jyoti@gmail.com	1234	Khanty-Mansiysk - Gornopravdinsk, Lugofilinskaya, Khanty-Mansiyskiy avtonomnyy okrug, Russia	19
+jyo	jyo@gmail.com	12345	Khanty-Mansiysk - Gornopravdinsk, Lugofilinskaya, Khanty-Mansiyskiy avtonomnyy okrug, Russia	21
+sujata	vakaresujatha@gmail.com	1234	Unnamed Road, 44430, Seli�te Kostajni&#269;ko, Croatia	22
+Test	test@gmail.com	test	Kundalwadi Jarikot Rd, Pimpalgaon K, Maharashtra 431711, India	23
+jyo12	jyo12@gmail.com	123	Unnamed Road, Hebukesaier Mengguzizhixian, Tacheng Diqu, Xinjiang Weiwuerzizhiqu, China	24
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_id_seq', 24, true);
+
+
+--
+-- Name: programs_program_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY programs
+    ADD CONSTRAINT programs_program_name_key UNIQUE (program_name);
+
+
+--
+-- Name: users_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_email_key UNIQUE (email);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
